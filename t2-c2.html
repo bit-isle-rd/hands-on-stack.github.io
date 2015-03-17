@@ -2014,7 +2014,7 @@ PLAY RECAP ********************************************************************
             
             <section><p>起動した仮想マシンをすべて削除します。</p>
 <p>下記のように、操作用仮想マシンからログアウトして、仮想マシンを削除するスクリプトを実行します。</p>
-<p>注意) <strong>99_cleanup.sh</strong> を実行するホストが <strong>piston-seminer.novalocal</strong> であることを事前に確認してください。</p>
+<p>注意) <strong>9_cleanup.sh</strong> を実行するホストが <strong>piston-seminer</strong> であることを事前に確認してください。</p>
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
@@ -2022,8 +2022,8 @@ PLAY RECAP ********************************************************************
 Connection to 118.67.96.82 closed.
 
 $ hostname
-osdt-lounge-console-vm.novalocal
-$ cd /opt/support/t2-c2/ &amp;&amp; ./99_cleanup.sh
+piston-seminer
+$ /opt/support/common/9_cleanup.sh
 Deleting seminer11-step-server
 Deallocating da778dd3-db98-4477-ae25-dc6fcebaf86d...
 Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
