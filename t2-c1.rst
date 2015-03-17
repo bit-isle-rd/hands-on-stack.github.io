@@ -70,16 +70,12 @@ userdata による自動インストール (2)
 
   - userdata スクリプトが実行され、自動的に DB サーバーのセットアップが行われます。
     起動完了までは少し時間がかかります。
-  - get_net_id.sh は仮想ネットワークの ID を取得し変数に格納しています。
 
 コマンド実行::
 
-  $ source get_net_id.sh
-  $ nova boot --flavor standard.xsmall --image "centos-base" \
+  $ nova boot --flavor m1.small --image "centos-base" \
       --key-name default --user-data userdata_dbs.txt \
       --security-groups sg-all-from-console,sg-all-from-dbs-net \
-      --availability-zone az1 \
-      --nic net-id=${MY_DBS_NET} --nic net-id=${MY_WORK_NET} \
       dbs01
 
 ----
@@ -95,7 +91,7 @@ userdata による自動インストール (3)
 
 コマンド実行::
 
-  $ watch -n5 nova console-log --length 30 dbs01
+  $ watch -n5 nova console-log --length 10 dbs01
 
   ...（中略）... 
   CentOS release 6.6 (Final)
@@ -142,17 +138,18 @@ metadata を利用した設定 (2)
 
 コマンド実行::
 
-  $ MY_DBS_IP=`get_instance_ip dbs01 dbs-net`
+  $ MY_DBS_IP=`get_instance_ip dbs01 private`
   $ echo $MY_DBS_IP
-  172.16.20.1
-  $ nova boot --flavor standard.xsmall --image "centos-base" \
+  10.50.16.8
+  $ nova boot --flavor m1.small --image "centos-base" \
       --key-name default --user-data userdata_app.txt \
       --security-groups \
           sg-all-from-console,sg-all-from-app-net,sg-all-from-dbs-net \
-      --availability-zone az1 --nic net-id=${MY_APP_NET} \
-      --nic net-id=${MY_DBS_NET} --nic net-id=${MY_WORK_NET} \
       --meta dbs_ip=${MY_DBS_IP} \
       app01
+  $ wait_instance app01 private
+  $ MY_APP_IP=`get_instance_ip app01 private`
+  $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
 
 ----
 
@@ -191,17 +188,17 @@ web サーバーの起動 (2)
 
 コマンド実行::
 
-  $ MY_APP_IP=`get_instance_ip app01 app-net`
   $ echo $MY_APP_IP
-  172.16.10.1
+  10.50.16.9
   $ nova boot \
-      --flavor standard.xsmall --image "centos-base" \
+      --flavor m1.tiny --image "centos-base" \
       --key-name default --user-data userdata_web.txt \
       --security-groups sg-all-from-console,sg-web-from-internet,sg-all-from-app-net \
-      --availability-zone az1 \
-      --nic net-id=${MY_DMZ_NET} --nic net-id=${MY_APP_NET} \
       --meta app_ip=${MY_APP_IP} \
       web01
+  $ wait_instance web01 private
+  $ MY_WEB_IP=`get_instance_ip web01 private`
+  $ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 $MY_WEB_IP/32
 
 ----
 
@@ -369,8 +366,6 @@ userdata での参照例::
   # delete instance: 43a929db-44ca-4754-a8bb-bd3c1981affa
   # delete instance: 0b602aaf-5a18-4441-9876-c21300e1ff2d
   ...
-  ### delete all FIPs
-  # delete FIP: 118.67.96.118
   ########## completed !!
 
 ----

@@ -25,7 +25,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>クラウドインテグレーション体験ラウンジ</title>
+    <title>クラウドインテグレーション体験セミナー</title>
     <!-- Styles -->
     
     <style type="text/css" media="print">
@@ -1328,18 +1328,13 @@ aside {
         <div class="slide">
           <div class="inner">
             
-            <header><h1>クラウドインテグレーション体験ラウンジ</h1></header>
+            <header><h1>クラウドインテグレーション体験セミナー</h1></header>
             
             
             <section><ul class="simple">
 <li>ようこそ「クラウドインテグレーション体験ラウンジ」へ！</li>
-<li>このラウンジではOpenStack上にシステムをインテグレーションするための技術について、考え方と具体的な操作方法と合わせて体験できます。</li>
-<li>本ラウンジは、セルフサービス型のハンズオン形式になっています。</li>
-<li>続くページのリンクから、体験してみたいテーマを選択してください！</li>
-<li>最後にアンケートがありますので、体験後に是非回答をお願いします。次回以降の参考とさせていただきます。<ul>
-<li><a class="reference external" href="https://docs.google.com/forms/d/13bzoJcSk8I80E70-52UPkfaEN5Ye4iLw1SMG1fPsLl0/viewform?usp=send_form">アンケート</a> (演習の最後にお願いします)</li>
-</ul>
-</li>
+<li>このセミナーではOpenStack上にシステムをインテグレーションするための技術について、考え方と具体的な操作方法と合わせて体験できます。</li>
+<li>本セミナーは、セルフサービス型のハンズオン形式になっています。</li>
 </ul></section>
             
           </div>
@@ -1356,41 +1351,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/8
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: index.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h1>注意事項</h1></header>
-            
-            
-            <section><ul class="simple">
-<li>混雑時に本環境を長時間占有するのはご遠慮ください。</li>
-<li>本環境でプライベートなインターネットアクセスはご遠慮ください。</li>
-<li>本環境は、OpenStack Days 2015 開催日のみアクセス可能な環境になります。</li>
-</ul></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="index.rst">index.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              2/8
+              1/6
             </aside>
           </footer>
         </div>
@@ -1406,20 +1367,20 @@ aside {
             
             <section><ul class="simple">
 <li>端末でのログイン方法<ul>
-<li>ノートPCで端末ソフト Mitty を起動して、student <em>XX</em> ユーザーでログインします。</li>
-<li><em>XX</em> 部分は、操作しているノートPCの番号になります。</li>
+<li>ご利用の端末からSSHクライアントソフト を起動して、seminer <em>XX</em> ユーザーでログインします。</li>
+<li><em>XX</em> 部分は、セミナー時にご案内いたします。</li>
 </ul>
 </li>
 </ul>
 <p>ログイン後の状態:</p>
 <pre class="literal-block">
 ---------ここから---------
-$ ssh studentXX
+$ ssh seminerXX
 
-[studentXX&#64;osdt-lounge-console-vm ~]$
+[seminerXX&#64;piston-seminer ~]$
 ---------ここまで---------
 </pre>
-<p>ログインした先の <em>XX</em> がノートPCの番号と確認してください。</p></section>
+<p>ログインした先の <em>XX</em> が指定された番号と一致していることを確認してください。</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -1435,7 +1396,7 @@ $ ssh studentXX
             </aside>
             
             <aside class="page_number">
-              3/8
+              2/6
             </aside>
           </footer>
         </div>
@@ -1476,7 +1437,7 @@ $ check_id
             </aside>
             
             <aside class="page_number">
-              4/8
+              3/6
             </aside>
           </footer>
         </div>
@@ -1491,15 +1452,11 @@ $ check_id
             
             
             <section><ul class="simple">
-<li><a class="reference external" href="./index01.html">1. 基礎操作編</a></li>
-<li><a class="reference external" href="./index02.html">2. クラウド上の自動化</a></li>
-<li><a class="reference external" href="./index03.html">3. クラウド上のデータ保護</a></li>
-<li><a class="reference external" href="./index04.html">4. システムデザイン</a></li>
-<li><a class="reference external" href="./about_env.html">OpenStack環境について</a></li>
-<li><a class="reference external" href="https://docs.google.com/forms/d/13bzoJcSk8I80E70-52UPkfaEN5Ye4iLw1SMG1fPsLl0/viewform?usp=send_form">アンケート</a> (演習の最後にお願いします)</li>
+<li><a class="reference external" href="./t2-c1.html">1. ３階層システムの構築自動化</a></li>
+<li><a class="reference external" href="./t2-c2.html">2. Ansibleを使用した更なる自動化</a></li>
 <li>ヘルプ<ul>
 <li>「t」「h」キーで、スライドの目次、操作方法を表示できます。</li>
-<li>操作方法でわからないことがあれば、お近くのスタッフまでお声がけください。</li>
+<li>操作方法でわからないことがあれば、講師までお声がけください。</li>
 </ul>
 </li>
 </ul></section>
@@ -1518,7 +1475,7 @@ $ check_id
             </aside>
             
             <aside class="page_number">
-              5/8
+              4/6
             </aside>
           </footer>
         </div>
@@ -1553,7 +1510,7 @@ $ check_id
             </aside>
             
             <aside class="page_number">
-              6/8
+              5/6
             </aside>
           </footer>
         </div>
@@ -1585,39 +1542,7 @@ $ check_id
             </aside>
             
             <aside class="page_number">
-              7/8
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: index.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h1>アンケート</h1></header>
-            
-            
-            <section><ul class="simple">
-<li><a class="reference external" href="https://docs.google.com/forms/d/13bzoJcSk8I80E70-52UPkfaEN5Ye4iLw1SMG1fPsLl0/viewform?usp=send_form">アンケート</a> (演習の最後にお願いします)</li>
-</ul></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="index.rst">index.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              8/8
+              6/6
             </aside>
           </footer>
         </div>
@@ -1632,50 +1557,38 @@ $ check_id
       <caption>Table of Contents</caption>
       
       <tr id="toc-row-1">
-        <th><a href="#slide1">クラウドインテグレーション体験ラウンジ</a></th>
+        <th><a href="#slide1">クラウドインテグレーション体験セミナー</a></th>
         <td><a href="#slide1">1</a></td>
       </tr>
       
       
       <tr id="toc-row-2">
-        <th><a href="#slide2">注意事項</a></th>
+        <th><a href="#slide2">環境へのログイン方法１</a></th>
         <td><a href="#slide2">2</a></td>
       </tr>
       
       
       <tr id="toc-row-3">
-        <th><a href="#slide3">環境へのログイン方法１</a></th>
+        <th><a href="#slide3">環境へのログイン方法2</a></th>
         <td><a href="#slide3">3</a></td>
       </tr>
       
       
       <tr id="toc-row-4">
-        <th><a href="#slide4">環境へのログイン方法2</a></th>
+        <th><a href="#slide4">以下からテーマを選択してください。</a></th>
         <td><a href="#slide4">4</a></td>
       </tr>
       
       
       <tr id="toc-row-5">
-        <th><a href="#slide5">以下からテーマを選択してください。</a></th>
+        <th><a href="#slide5">本演習について</a></th>
         <td><a href="#slide5">5</a></td>
       </tr>
       
       
       <tr id="toc-row-6">
-        <th><a href="#slide6">本演習について</a></th>
+        <th><a href="#slide6">よくあるエラーと対処</a></th>
         <td><a href="#slide6">6</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-7">
-        <th><a href="#slide7">よくあるエラーと対処</a></th>
-        <td><a href="#slide7">7</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-8">
-        <th><a href="#slide8">アンケート</a></th>
-        <td><a href="#slide8">8</a></td>
       </tr>
       
       
