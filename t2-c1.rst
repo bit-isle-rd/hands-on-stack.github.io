@@ -22,18 +22,18 @@
 ================
 
 - 下記のコマンドで、演習環境の準備を行います。コマンドの実行が完了するまで数分かかります。
-- 3階層システムに必要な仮想ネットワーク、セキュリティーグループ、動作確認用サーバーなどを作成しています。
-- **サンプルファイルがホームディレクトリに用意されます。**
+- 3階層システムに必要なセキュリティーグループなどを作成しています。
+- サンプルファイルがホームディレクトリに用意されます。
 
-コマンド実行::
+**コマンド実行**::
 
   $ /opt/support/t2-c1/1_init.sh
           <--- ディレクトリー「/opt/support/t2-c1」を使用します。
   ...（中略）... 
-  | ID                                   | Name        | Status | Task State | Power State | Networks                        |
-  +--------------------------------------+-------------+--------+------------+-------------+---------------------------------+
-  | b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | ACTIVE | -          | Running     | work-net=10.0.0.1, 118.67.96.82 |
-  +--------------------------------------+-------------+--------+------------+-------------+---------------------------------+
+  | ID                                   | Name        | Status | Task State | Power State | Networks           |
+  +--------------------------------------+-------------+--------+------------+-------------+--------------------+
+  | b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | ACTIVE | -          | Running     | private=10.0.0.1   |
+  +--------------------------------------+-------------+--------+------------+-------------+--------------------+
   ============================================================
   Initialization Completed!
   ============================================================
@@ -71,11 +71,11 @@ userdata による自動インストール (2)
   - userdata スクリプトが実行され、自動的に DB サーバーのセットアップが行われます。
     起動完了までは少し時間がかかります。
 
-コマンド実行::
+**コマンド実行**::
 
-  $ nova boot --flavor m1.small --image "centos-base" \
+  $ nova boot --flavor m1.xsmall --image "centos-base" \
       --key-name default --user-data userdata_dbs.txt \
-      --security-groups sg-all-from-console,sg-all-from-dbs-net \
+      --security-groups sg-for-step-server,sg-all-from-dbs-net \
       dbs01
 
 ----
@@ -141,10 +141,10 @@ metadata を利用した設定 (2)
   $ MY_DBS_IP=`get_instance_ip dbs01 private`
   $ echo $MY_DBS_IP
   10.50.16.8
-  $ nova boot --flavor m1.small --image "centos-base" \
+  $ nova boot --flavor m1.xsmall --image "centos-base" \
       --key-name default --user-data userdata_app.txt \
       --security-groups \
-          sg-all-from-console,sg-all-from-app-net,sg-all-from-dbs-net \
+          sg-for-step-server,sg-all-from-app-net \
       --meta dbs_ip=${MY_DBS_IP} \
       app01
   $ wait_instance app01 private
@@ -152,6 +152,41 @@ metadata を利用した設定 (2)
   $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
 
 ----
+
+metadata を利用した設定 (3) 
+===================================
+
+- ここでもコンソールログの確認により起動状態を確認します。
+
+  - タイミングにより "ERROR: The resource could not be found." と表示されますが、これは問題ありません。
+  - APP サーバーの起動が完了して、コンソールログにログインプロンプトが表示されるまで待ちます。
+
+コマンド実行::
+
+  $ watch -n5 nova console-log --length 10 app01
+
+  ...（中略）...
+  CentOS release 6.6 (Final)
+  Kernel 2.6.32-504.el6.x86_64 on an x86_64
+
+  app01 login:
+
+----
+
+metadata を利用した設定 (4)
+===================================
+
+- APPサーバーの自動起動が成功していれば、5555番ポートでアプリケーションが起動していることが確認できます。
+  踏み台サーバーより下記コマンドで確認してみましょう。
+
+
+コマンド実行::
+
+  $ curl $MY_APP_IP:5555/bbs
+  {}                  ← データが無いため空になりますが、正常に応答しています。
+
+----
+
 
 web サーバーの起動 (1)
 ======================
@@ -184,16 +219,16 @@ web サーバーの起動 (2)
 ======================
 
 - 下記のコマンドを実行し、WEB サーバーを起動します。 APP サーバーとほとんど同じです。
-  - ``--meta`` オプションで APP サーバーの IP アドレスを "``app_ip``" という名前で渡します。
+- ``--meta`` オプションで APP サーバーの IP アドレスを "``app_ip``" という名前で渡します。
 
 コマンド実行::
 
   $ echo $MY_APP_IP
   10.50.16.9
   $ nova boot \
-      --flavor m1.tiny --image "centos-base" \
+      --flavor m1.xsmall --image "centos-base" \
       --key-name default --user-data userdata_web.txt \
-      --security-groups sg-all-from-console,sg-web-from-internet,sg-all-from-app-net \
+      --security-groups sg-for-step-server,sg-web-from-internet \
       --meta app_ip=${MY_APP_IP} \
       web01
   $ wait_instance web01 private
@@ -202,62 +237,61 @@ web サーバーの起動 (2)
 
 ----
 
-アプリケーションの動作確認
+web サーバーの起動 (3)
+===================================
+
+- ここでもコンソールログの確認により起動状態を確認します。
+
+  - タイミングにより "ERROR: The resource could not be found." と表示されますが、これは問題ありません。
+  - APP サーバーの起動が完了して、コンソールログにログインプロンプトが表示されるまで待ちます。
+
+コマンド実行::
+
+  $ watch -n5 nova console-log --length 10 web01
+
+  ...（中略）...
+  CentOS release 6.6 (Final)
+  Kernel 2.6.32-504.el6.x86_64 on an x86_64
+
+  web01 login:
+
+----
+
+
+アプリケーションの動作確認(1)
 ==========================
 
-- Web サーバーの起動が完了したら、下記のコマンドでフローティングIPを割り当てます。
+- Web サーバーの起動が完了したら、下記のコマンドで起動を確認します。
 
-  - 最初のコマンドでフローティング IP を確保します。
-  - 割り当てられた IP を Web サーバーに割り当てます。
-
-- Webブラウザーから http://xxx.xxx.xxx.xxx にアクセスすると掲示板アプリが利用できます。
 
 コマンド実行::
 
-  $ nova floating-ip-create Ext-Net
-  +--------------+-----------+----------+---------+
-  | Ip           | Server Id | Fixed Ip | Pool    |
-  +--------------+-----------+----------+---------+
-  | 118.67.96.85 |           | -        | Ext-Net |
-  +--------------+-----------+----------+---------+
-  $ nova floating-ip-associate web01 118.67.96.85
-
+  $ curl $MY_WEB_IP
+  <!doctype html>
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title></title>
+    </head>
+    <body>
+      <form method="POST" action="/">
+        <label for="text">Please write something and hit enter</label> <input id="text" name="text" type="text" value="">
+      </form>
+      <br/>
+    </body>
+  </html>
 ----
 
-構築した環境の全体像
+アプリケーションの動作確認(2)
 ================
 
-- ここで構築した環境は下図のようになります。
+- Webブラウザーから動作確認を行います。
 
-  - 「OpenStackクラウドインテグレーション」より引用
+  - Webブラウザーから http://xxx.xxx.xxx.xxx にアクセスすると掲示板アプリが利用できます。
 
-.. image:: ./_assets/t2-c1/02_horizon.png
+.. image:: ./_assets/t2-c1/02_app.png
    :width: 100%
 
-
-----
-
-ネットワーク構成の確認方法
-================
-
-- IP アドレスの確認などは下記のコマンドで行います。
-- この後で使用するアドレスとしては以下があります。
-
-  - step-server の 2 つ目のアドレス (例: 118.67.96.82)
-  - web01 の dmz-net のアドレス (例: 192.168.0.1)
-  - app01 の work-net のアドレス (例: 10.0.0.4)
-
-コマンド実行::
-
-  $ nova list --fields name,networks
-  +--------------------------------------+-------------+-------------------------------------------------------------+
-  | ID                                   | Name        | Networks                                                    |
-  +--------------------------------------+-------------+-------------------------------------------------------------+
-  | d6e8c082-1839-46fb-93e6-f0d61ed1d149 | app01       | app-net=172.16.10.1; dbs-net=172.16.20.3; work-net=10.0.0.4 |
-  | 6c84a6c9-fdda-4fce-b576-5be757ba2a74 | dbs01       | dbs-net=172.16.20.1; work-net=10.0.0.3                      |
-  | b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | work-net=10.0.0.1, 118.67.96.82                             |
-  | 2fcebc7d-ada8-416a-bade-0abad4b319b8 | web01       | dmz-net=192.168.0.1; app-net=172.16.10.3                    |
-  +--------------------------------------+-------------+-------------------------------------------------------------+
 
 ----
 
@@ -265,19 +299,12 @@ userdata/metadata の裏側
 ============================================
 
 - これで 3 階層システムの構築は完了です。ここで、userdata/metadata が仮想マシンの中からどのように参照されるかを見てみましょう。
-- WEB サーバーなどはインターネットからログインできないので、踏み台サーバー経由でログインします。
-  まず踏み台サーバーへログインします (work-netの 2つ目のアドレス)
+- 踏み台サーバーからWebサーバーへログインします。
 
 コマンド実行::
 
-  $ nova list --name step-server --fields name,networks
-  +--------------------------------------+-------------+---------------------------------+
-  | ID                                   | Name        | Networks                        |
-  +--------------------------------------+-------------+---------------------------------+
-  | b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | work-net=10.0.0.1, 118.67.96.82 |
-  +--------------------------------------+-------------+---------------------------------+
-  $ ssh -i default.pem root@118.67.96.82
-  [root@step-server ~]# 
+  $ ssh  root@$MY_WEB_IP
+  [root@web01 ~]# 
 
 ----
 
@@ -289,7 +316,6 @@ userdata/metadata の裏側
 
 コマンド実行::
 
-  [root@step-server ~]# ssh -i default.pem root@192.168.0.1
   [root@web01 ~]# 
   [root@web01 ~]# curl -s http://169.254.169.254/openstack/latest/; echo
   meta_data.json

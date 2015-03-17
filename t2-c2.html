@@ -1423,12 +1423,10 @@ Deleting seminer10-step-server...
 Booting seminer10-step-server...
 ...(中略)...
 Waiting for guest OS to be ready........
-Associating floating IP...
-Associated floating IP: &lt;Floating IP&gt;
 
 Use the following command to login seminer10-step-server
-=&gt; ssh -i ~/default.pem root&#64;&lt;Floating IP&gt;
-$ ssh -i ~/default.pem root&#64;&lt;Floating IP&gt;
+=&gt; ssh -i ~/default.pem root&#64;$MY_IP
+$ ssh -i ~/default.pem root&#64;$MY_IP
 ---------ここまで---------
 </pre></section>
             
@@ -2016,7 +2014,7 @@ PLAY RECAP ********************************************************************
             
             <section><p>起動した仮想マシンをすべて削除します。</p>
 <p>下記のように、操作用仮想マシンからログアウトして、仮想マシンを削除するスクリプトを実行します。</p>
-<p>注意) <strong>99_cleanup.sh</strong> を実行するホストが <strong>osdt-lounge-console-vm.novalocal</strong> であることを事前に確認してください。</p>
+<p>注意) <strong>99_cleanup.sh</strong> を実行するホストが <strong>piston-seminer.novalocal</strong> であることを事前に確認してください。</p>
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------

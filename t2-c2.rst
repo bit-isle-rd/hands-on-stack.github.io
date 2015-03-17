@@ -51,12 +51,10 @@ OpenStackと連携して仮想マシンの管理を行う
   Booting seminer10-step-server...
   ...(中略)...
   Waiting for guest OS to be ready........
-  Associating floating IP...
-  Associated floating IP: <Floating IP>
 
   Use the following command to login seminer10-step-server
-  => ssh -i ~/default.pem root@<Floating IP>
-  $ ssh -i ~/default.pem root@<Floating IP>
+  => ssh -i ~/default.pem root@$MY_IP
+  $ ssh -i ~/default.pem root@$MY_IP
   ---------ここまで---------
 
 
@@ -365,7 +363,7 @@ sample.yml::
 
 下記のように、操作用仮想マシンからログアウトして、仮想マシンを削除するスクリプトを実行します。
 
-注意) **99_cleanup.sh** を実行するホストが **osdt-lounge-console-vm.novalocal** であることを事前に確認してください。
+注意) **99_cleanup.sh** を実行するホストが **piston-seminer.novalocal** であることを事前に確認してください。
 
 コマンド実行の様子::
 
