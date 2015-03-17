@@ -1703,8 +1703,8 @@ localhost ansible_connection=local
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-(venv)# wget -O nova_compute.py http://goo.gl/rQXudE
-(venv)# wget -O create_vm.yml http://goo.gl/foPjQw ※変更要
+(venv)# wget -O nova_compute.py http://goo.gl/XBSS2z
+(venv)# wget -O create_vm.yml http://goo.gl/j0AkBG
 (venv)# ansible-playbook -i ansible_hosts create_vm.yml
 PLAY [localhost] ******************************************************
 GATHERING FACTS *******************************************************
@@ -1828,9 +1828,9 @@ tasks:
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-(venv)# wget -O inventory.py http://goo.gl/v6K6lX
+(venv)# wget -O inventory.py http://goo.gl/wxqQ1t
 (venv)# chmod +x inventory.py
-(venv)# wget -O inventory.ini http://goo.gl/PIRgk9
+(venv)# wget -O inventory.ini http://goo.gl/Ioo1VM
 ---------ここまで---------
 </pre>
 <p>inventory.iniファイルのhostname_prefixを自身の環境にあわせてseminerNN-testに修正):</p>

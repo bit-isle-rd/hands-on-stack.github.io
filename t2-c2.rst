@@ -191,8 +191,8 @@ Ansibleを利用して仮想マシンを起動します。仮想マシンの起�
 コマンド実行の様子::
 
   ---------ここから---------
-  (venv)# wget -O nova_compute.py http://goo.gl/rQXudE
-  (venv)# wget -O create_vm.yml http://goo.gl/foPjQw ※変更要
+  (venv)# wget -O nova_compute.py http://goo.gl/XBSS2z 
+  (venv)# wget -O create_vm.yml http://goo.gl/j0AkBG
   (venv)# ansible-playbook -i ansible_hosts create_vm.yml
   PLAY [localhost] ******************************************************
   GATHERING FACTS *******************************************************
@@ -271,9 +271,9 @@ Playbook(create_vm.yml)::
 コマンド実行の様子::
 
   ---------ここから---------
-  (venv)# wget -O inventory.py http://goo.gl/v6K6lX
+  (venv)# wget -O inventory.py http://goo.gl/wxqQ1t 
   (venv)# chmod +x inventory.py
-  (venv)# wget -O inventory.ini http://goo.gl/PIRgk9
+  (venv)# wget -O inventory.ini http://goo.gl/Ioo1VM
   ---------ここまで---------
 
 inventory.iniファイルのhostname_prefixを自身の環境にあわせてseminerNN-testに修正)::
