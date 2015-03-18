@@ -1347,7 +1347,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/17
+              1/16
             </aside>
           </footer>
         </div>
@@ -1398,7 +1398,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/17
+              2/16
             </aside>
           </footer>
         </div>
@@ -1417,14 +1417,12 @@ aside {
 <p>コマンド実行の様子(数分かかります):</p>
 <pre class="literal-block">
 ---------ここから---------
-$ cd /opt/support/t2-c2/ &amp;&amp; ./01_init.sh
+$ cd /opt/support/t2-c2/01_init.sh
 Cleaning up...
-Deleting seminer10-step-server...
-Booting seminer10-step-server...
 ...(中略)...
 Waiting for guest OS to be ready........
 
-Use the following command to login seminer10-step-server
+Use the following command to login ${USER}-ansible-server
 =&gt; ssh -i ~/default.pem root&#64;$MY_IP
 $ ssh -i ~/default.pem root&#64;$MY_IP
 ---------ここまで---------
@@ -1444,7 +1442,7 @@ $ ssh -i ~/default.pem root&#64;$MY_IP
             </aside>
             
             <aside class="page_number">
-              3/17
+              3/16
             </aside>
           </footer>
         </div>
@@ -1464,15 +1462,15 @@ $ ssh -i ~/default.pem root&#64;$MY_IP
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-[root&#64;seminer11-step-server ~]# cd $HOME &amp;&amp; virtualenv venv
-[root&#64;seminer11-step-server ~]# source /root/venv/bin/activate
-(venv)[root&#64;seminer11-step-server ~]# pip install ansible
+[root&#64;seminer11-ansible-server ~]# cd $HOME &amp;&amp; virtualenv venv
+[root&#64;seminer11-ansible-server ~]# source /root/venv/bin/activate
+(venv)[root&#64;seminer11-ansible-server ~]# pip install ansible
 Downloading/unpacking ansible
   Downloading ansible-1.8.2.tar.gz (754kB): 754kB downloaded
 ...(中略)...
 Successfully installed ansible paramiko jinja2 PyYAML pycrypto ecdsa markupsafe
 Cleaning up...
-(venv)[root&#64;seminer11-step-server ~]# ansible --version
+(venv)[root&#64;seminer11-ansible-server ~]# ansible --version
 ansible 1.8.2
   configured module search path = None
 ---------ここまで---------
@@ -1492,7 +1490,7 @@ ansible 1.8.2
             </aside>
             
             <aside class="page_number">
-              4/17
+              4/16
             </aside>
           </footer>
         </div>
@@ -1520,7 +1518,8 @@ localhost | success &gt;&gt; {
 }
 ---------ここまで---------
 </pre>
-<p>実行結果が <strong>success</strong> となっていれば、動作確認成功です。</p></section>
+<p>実行結果が <strong>success</strong> となっていれば、動作確認成功です。</p>
+<img alt="./_assets/t2-c2/01_check_1.png" src="data:image/png;base64,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" style="width: 10%;" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -1536,7 +1535,7 @@ localhost | success &gt;&gt; {
             </aside>
             
             <aside class="page_number">
-              5/17
+              5/16
             </aside>
           </footer>
         </div>
@@ -1547,25 +1546,24 @@ localhost | success &gt;&gt; {
         <div class="slide">
           <div class="inner">
             
-            <header><h1>&gt; Lesson1: Ansibleのインストール(3)</h1></header>
+            <header><h1>&gt; Lesson1: OpenStack Clientのインストール</h1></header>
             
             
             <section><p>OpenStackのクライアントライブラリをインストールして、novaの操作が可能であることを確認します。このインストールにもpipを利用します。
 novaコマンドで、仮想マシンのリストが取得できればインストール成功です。
-踏み台となる <strong>seminer11-step-server</strong> と、テスト用の <strong>seminer11-test-server</strong> が起動していることが確認できます。</p>
+踏み台となる <strong>seminer11-ansible-server</strong> と、テスト用の <strong>seminer11-test-server</strong> が起動していることが確認できます。</p>
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
 (venv)# pip install python-novaclient==2.16.0
-(venv)# pip install python-neutronclient==2.3.4
 (venv)# source $HOME/openrc
 (venv)# nova list
-+--------------------------------------+-----------------------+--------+------------+-------------+--------------------+
-| ID                                   | Name                  | Status | Task State | Power State | Networks           |
-+--------------------------------------+-----------------------+--------+------------+-------------+--------------------+
-| 16b659aa-abe5-4d08-88ee-3803aae1b1cd | seminer11-step-server | ACTIVE | -          | Running     | private=10.50.16.1 |
-| cdac9e6e-7b2a-44ec-a18f-be6e7ea3b11e | seminer11-test-server | ACTIVE | -          | Running     | private=10.50.16.3 |
-+--------------------------------------+-----------------------+--------+------------+-------------+--------------------+
++--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
+| ID                                   | Name                     | Status | Task State | Power State | Networks           |
++--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
+| 16b659aa-abe5-4d08-88ee-3803aae1b1cd | seminer11-ansible-server | ACTIVE | -          | Running     | private=10.50.16.1 |
+| cdac9e6e-7b2a-44ec-a18f-be6e7ea3b11e | seminer11-test-server    | ACTIVE | -          | Running     | private=10.50.16.3 |
++--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
 ---------ここまで---------
 </pre></section>
             
@@ -1583,7 +1581,7 @@ novaコマンドで、仮想マシンのリストが取得できればインス�
             </aside>
             
             <aside class="page_number">
-              6/17
+              6/16
             </aside>
           </footer>
         </div>
@@ -1594,7 +1592,7 @@ novaコマンドで、仮想マシンのリストが取得できればインス�
         <div class="slide">
           <div class="inner">
             
-            <header><h1>&gt; Lesson1: Ansibleのインストール(4)</h1></header>
+            <header><h1>&gt; Lesson1: Ansibleの設定</h1></header>
             
             
             <section><p>Ansibleの基本動作を設定する <strong>$HOME/.ansible.cfg</strong> の新規作成と、操作対象ホストを記述した <strong>ansible_hosts</strong> に <strong>[test-server]</strong> グループのメンバーとして <strong>seminer11-test-server</strong> のIPアドレスを追記します。IPアドレスについては、 <strong>nova list</strong> の出力結果取得したアドレスを指定してください。</p>
@@ -1632,7 +1630,7 @@ localhost ansible_connection=local
             </aside>
             
             <aside class="page_number">
-              7/17
+              7/16
             </aside>
           </footer>
         </div>
@@ -1658,15 +1656,7 @@ localhost ansible_connection=local
 ---------ここまで---------
 </pre>
 <p>環境構成:</p>
-<pre class="literal-block">
-+-------------+                +-------------+
-| step-server |                | test-server |
-+------+------+                +------+------+
-       |                              |
-       | .9                           | .10
-+------+------------------------------+------+
-                                   10.50.16.0/24
-</pre></section>
+<img alt="./_assets/t2-c2/01_check_2.png" src="data:image/png;base64,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" style="width: 30%;" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -1682,7 +1672,7 @@ localhost ansible_connection=local
             </aside>
             
             <aside class="page_number">
-              8/17
+              8/16
             </aside>
           </footer>
         </div>
@@ -1701,22 +1691,16 @@ localhost ansible_connection=local
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-(venv)# wget -O nova_compute.py http://goo.gl/XBSS2z
 (venv)# wget -O create_vm.yml http://goo.gl/j0AkBG
 (venv)# ansible-playbook -i ansible_hosts create_vm.yml
 PLAY [localhost] ******************************************************
-GATHERING FACTS *******************************************************
-ok: [localhost]
-TASK: [ansible_python_interpreter setup] ******************************
-ok: [localhost]
-TASK: [get uuid for generate hostname] ********************************
-changed: [localhost]
-TASK: [creating server] ***********************************************
-changed: [localhost]
+(中略)
 PLAY RECAP ************************************************************
 localhost              : ok=4    changed=2    unreachable=0    failed=0
 ---------ここまで---------
-</pre></section>
+</pre>
+<p>実行イメージ:</p>
+<img alt="./_assets/t2-c2/01_check_3.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATgAAACrCAIAAAB9mBdkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABVpSURBVHhe7Z1/cBRlmsffiPww8Za7NQPHomR0EwpizvLgvMAgZs3qriFWkUBtcK0StGCDG89NOAVkD/IHeIuAFhPriJsYS8A6FLaAUHchuFgoKJGshVflBUQSl4SAkUzgDJJAAhb3vP2+M9Pd8zPJ/Oh38v3UFPTb0+mZwHz6eZ63u59JunnzJgNBOfbFmY1bD3Z0dcsxiAQTUscuLnTkz86SYxAUiBqax5+vvNjdIwcgcowaeevht5bJAQjKLfJvEBhYGiX6r9+QSyAUiKihmblwk1j4dPEKsQCGyMy3NoqFT7cvFwsgOIioACgARAVAASAqAAoAUQFQAIgKgAJAVAAUAKICoAAQFQAFgKgAKABEBUABICoACgBRAVAAiAqAAkBUABQAogKgABAVAAWAqGDg2JtZzn65DGICRI0qxSznpuFhk09EHe6S+0UfcMqVQFkgatTgqlSxtlnscJJ8nKxnmTdZZrHcIHrQS6cx9pn7dV35zO6QT9n2s5xmlixHQBUganRIdrK0dG5pa4NcQ7jmcFdtVVGOq8X8pV2bWK8cs9YMw9sACgJRo4O9lLF6P3q4Xub+2N25KIU+npfqMmRP6BPwAOh+Sh+KQ/5gSqZc8OJgD9BO8hhL5wv6HVKcD7SfQG/Ai7ZblKxRBqJGAwdLYaz3tBwZaGA9FG8nyxGRXMpylss0leJt2lFDmkpendSe+qyCh2K9RfwHC2Ry29bCf1AG6mrm0p41e9XAX4VegrW4X66aryZLe935uXgDnoCvfwP0YL65AFl6lCXXs8Nz5AoQHSBqNMjiRWDPSTkKyckMmaZSbkyO2Yq0gYPZ85hrKV9D9JZpNq7WBgLyza1Hq9bQNMWtManF91PFw2DImSTa2BP5XbX8T5sw3PgGCLFbPZmwNEZA1LhTb/j097aw5HzueXIR/9OlBT1BTzNjGbp5oGZvFcqa+HKy7usheBicpa2kwOuT0AZE249AvIHeJjk0k8d3a4OlMQKiRgPdx90v/rNif+irR15eDggt1z28lC+mbdMZbkIUmeJBEVKulfQEmoWq5xGedI3ZCafhDUSNBlohaiuQIwPF/JMdIivWhUpPfSgf7iR5AFRrdWk6L5v9oBWZrMK9fy0I6/Gk0760LuIbZ2IaKRZA1OjgIjf8RRv7cl5btuoSWkM2Swlnuoy3vZrMQTwJn5QM/qJ+v0BHJti75FCPeAP6dNoMRWwK13m4oCIGQNToIKaFKHHVu8qvQ0hnbVog8pLOHnBfgWDbz7dvLdMG1ca5XO3ZcJTgJ1R0UU6c0fWcVu2ho0A6G+f232QjnxySi/IN6M/60q9jrnW1cE1lcLg1MBgkEDVqUNZKH2J9kZnWzNNL88nVevZZnfvEpnYuxDO31Jph2IP9NPtMOBwUflkFkz9CjwdK+XUX4kwMIWePj/Kn+PmbanniR2zcO8sws0VvgDb2vAG21N+Z4TnmAwqIAvg2t9BE8dvceIwle4fdxCm+zW2gIKICoAAQFQAFgKhxhYpAXDAAwgCiAqAAEBUABYCoACgARAVAASAqAAoAUQFQAIhqHbTbzeJ80az2Hvy3XAHxBKJaBttqltzCOt0X0/Jr62+aOwYmO/nKKMrcwFrrmW254UWBBYColsGWZ2gdyO9NI9KZPbbxjXdj0d1eA6wBRLUI2g3l5r4nLczVEvP4pvVGk32bgFWAqNaAt4PQ5b0eeNeyoEFVJMOeh/7eUVMLT5FLGzZwP0y5tKdvE7AMENUa8ERX36zMg7h7O0BQ5beSa7ebikYq4uZVoaJviwlKrT2N1GizQC1CCd5FLVDrFhAfIKo1SE6XC74EDKrudp7eZp9aWwnR3Vt0+paNPwkttW57WY5OBmoRqsG7QESoCwyIEBDVMgRsTejTEkXgt52nN2tt0Opbd4O15Ez/qTUnVM9EYAEgqgqI/tqeL8LQY2rnybNWN5113ux3XD7rrdMJGbRFKLAeENUy6L/nwoy7h9g4OfZiSlDlSR2N3l3cTL6Bg9nSda0GQ7UIBdYDoloDSlmDI2vOfDkkhIemdp6826gncorslzJkeujy3iAtQgUp2iEjYOttEAcgqjUwf12FL9o1Q4Y5J+Ghrna1N/Nl2W1Ug7JfKlntxrw3WItQjSB9gEGcgKjWwNRu1y8iqOox9RMVX16s7/fJo266Me8lgrYIJQxhGVgCtAsNTRTbhXpx143hdO6NLsXyi9J9W/hGDrQLHSiIqBZBZLYWuB4o0DVSIK5AVMvAM9u4Xw0vLqLQ3RsArAFEtQ7atyRGM+EMA/Gt5PrvsAKWAKICoAAQFQAFgKgAKABEBUABICoACgBRAVAAiAqAAkBUABQAogKgABAVAAWAqAAoAEQFQAEgKgAKAFEBUACICoACoBVLaDytWEDEQSuWMEFEDc2okbfKJWvzww8/XLva0/N99yXXt33Xrsm1ICGAqKFZXGjFb2GhVIi0vPzdJdKyo7317Ndf0qOzo33k6DG33HKL69v29jNfWdzYwtz75RIIBVJfxej+vrfs5ZrjTS2dF7sd06Zm2Cfc+fd3pKdN+PfKP7W0dRQ/8cu1ZU+KLWlYe/BY7cHGvv7reTnTi+Y8mDV5kngKKAdEVY/jTV+Pu2PsXRNSxbDp9NlnVlbkzryv/vDxHZtf9LURxiYAEFVtSE4KsC8sLsianLZiw9ZPdr4in/CHMHZn3SejR40seDS74NEZFIrlc8DaQFSFqX7v/dfeqn17Q6lj2pSVG7dRDvz8wsflc0GhILxr/yckOYxVBYiqJJTElq6raTrdtnVjKTlGw/vyf/fxe69QSiy3CA8YqwoQVT06L3ZTUTp61Ki3N/xu7N/w1vqU0G7f+9GeypfEBoPAZOyC/NmeGhhYAYiqGGLqKC9numd2l3hy2WtzH/lnskuOhwDt/53aD8lYCs5Fcx6kF4KxVgCiqgRFTqpFf//bXy2alytXaQF29hMvfVH3OgVDuSoSNHx+at8HjTDWIkBUZXi1Zu+bO/8spo7kKo3u73tPNJ81rYwgMNYKQFQFEFNHLW3fkKVxlMRjLL0HYexA567AoIGoVqe9o4uK0rsm2Jyrl4ipo7hz6NMv9n3wlwNHjt+bkUa1MYyNARDV0hxv+posLXh0hn7qyDpQdD1w5H9gbAyAqNZFTB1tWLGIRJWrrAqMjTYQ1aKUO3eQqFSUTs/6qVylAh5jHdOmPvbQPz720HSLpOuqA1Eth7g/pr3DFd+po6HQ139dGEt/5s68D8YOHYhqLcTUUXraTyrWLInsedG4AGMjBUS1EA2fnyJLf7PgFy8uKZSrEgVfY6nwToAjUcyAqFZh255Df3jjT0pMHQ0FvbF5OdPJWPoTxoYEolqCcucO+uBSUTp8bummUvzAEW7soU+/gLEhgahxhj6vz6x8va+/nywdnqc0YGw4QNR40tLW8fSKiqzJaYkxdTRETMaK87HyuWEPRI0bYurohcUFxU/8Uq4CGsLYnXVHTzS3PfaQjLHyueEKRI0PoouKc/USfASD0Hmxm0r3fR/8BcZC1FjT13+93LmDsrthNXU0RGAsRI0pYuqIFjxdVMCA0Btb8OiMuY9kR+9GXEsBUWOH6KKSO/O+tWVPYupoiJCxtQeP7dr/CS1QdE14YyFqjKA4IBrwYuoosrR3dNG/beIbS6KCaFP17oHJjzx79PiXcjxU9hfz/zqHs1mOh4rYH0e/T7m2eL8cW5yz37jo3/nnT63+hznPr9iwNXL/2pYAokaXa339S1dXzipa2dz6jVwVAYRCRoO8spkJdzuBd2t/r6ICHmP/qeBf12z+z//9qk0+oTL4NrcoQsnYvJL19GddTbllGltnZGrfTSf8a3bygSE0V+Xxp1XmrgmpVF98sH3du84Xf3T7bc+uqXyg8IVy546m02flFioi/3tApKEDuTiiy/GQCRYKA4S9kDHRj6heVI2ovlA6s+nNPZTXDCjGUlim4CwH8QYRNSrUHjw2/7n1//JUvtV6HbVUzErSkVHWQCsbyjLkWLC0XmycMFA68+KSwk92vmKKsS1tHXILf7guXX5mZUVf/3U5ji9SWBA56OAd0akjX8KNdb7biRAaAocjwEaRm76KNyLGUoClMEsLgWYQlq6u/HXZq3IQVxBRIwkdfZ9d88aBI59TgWTNkwTppUeDpdAEybitSC4nLiLGfrb3tT+uK7l85SrZ+OCCl16t2WuKsRVrllzru75y4zY5jiNSWDBkqJ75+VOrn15R8d3lHrkqcoSwi4fNgJuYIq8+zBpqVHPBaojH2iBxIqovVLhS+eobY+l/k9a8vu2/xDBe8Asejn1xZuPWgx1d3fz/JUGZkDp2caEjf3aWHEeaaDfgrV+aNKdaLvuFRGVz/G9CqumncsWuxEoqWalMJf+OlqYbB6YNxcC0p8RE/8V2C/IfFA035pWs/7eSX8Wx+QZPfV9+sz6xLSXoF6SDkRxEmtqDx55c9iopGr2po7wqcWAVGGKdwC2QYWXAIMtY9Rw+bWSYTBKDYU/W5En0/yiy4nPfXsxfspYOwY5pU0vX1TR8fkpuFHN4RJ25cJMcJTqfbl8ulyJHPBrwGmKdG78r/TCoiCqeC73zWBKzTPDK5f/77lLX9f6+ESNG/GRS+q0jY3qdtkgGDaKOT0/MW4cutBwXC5EVtTvGDXi94rDYiWp4zlqiPv585cXuHjmIKD/cuNHXd7X/2tWrvb3X+6+ypKTRo28bPea2MckpI0eNIV3ldrFi1MhbMes7SNo7uuY/t57KmLqa8li2yXZkZsglmb1yZlW0yHVhEzr1bTndJJcsSpQs7WhvbT/zVfeli7T8o7/7MYXQSfdMGT8x7W/vGDfmtpTYW0r0X7+BiDoY4tKAVxfwmrWg6EW30hz0zGHSSLBnDRHaihE14T+3hOeji4g6YLbtOUSWblixKC5tshtONssl7pDEr4SC5pM8TGZN9m5AzvH4qSGCqPHKJBme62v5oUAXwEE8gagDo9y54z/eqdu9ZVXsZ+qFcpSzBr3Cz5sPC7TIOwjdpKdF+QEPASCWQNRw6f6+d17JK8ebWqgojUevI1Ey8qv7qv2fL5W3xfjBqFt66VEZiH2vceDw8Fy/VHuJ4tXuUC2PEiBeQNSwaGnryF+ydtwdY/dUropPm+yWul2kiqNoW8BLAPUCGgmSGWuYU98KoanDudw6BelwB6KGpuHzU2TpwsKH/7jut/HqdSQ81WrNvCoZCN1Z7kDmfPUFKiFqVIlW8zY7WVmZFk336/xGwRpvIGoIqt97/5mVFc7VS+La66h+k2ZUcYEIcTx4eu+DMd+l5g93XZueX+RJkL2TUQJ+elaqS8mwnOsVPy5ybf2UFIgtEDUgff38tok3d/5595ZVce4i25KxnBJeYyrqyXS9xgbGbbghQfY505JXpaXVJLC/ZLl4v4VOzQw7cB7VP2jAa31wHnW403T67CML12TYJ7zrfAGWAisAUc3UHz4+/7n1v1nwiw0rFqFNNrAIENVA9Xvvl71c8/aGUrTJBpYCokpEF5Xtez+sqykfJl9nAhQConIs2YAXAC8QlU8d5S9ZOz0rfU/lS5g6AtYkbqLeZClPleTWltxj14b2h7Nry7NytGUTpi0ji2Ub8AKgZ2Ci5hTl1pbn1haNl2PFebVm78qN297eULpoXq5cBYAlGYCoN9l4xxR2vquHTbH5DX0DIon1vFN5qKDyr61yRUyxfgNeAPQMJKJm2bJZ567drvNsnCNabTdjQXtHFxWl5OruLati2UUFWApZUpVnPxXRBDFKuw1XVHr5hQ+NY6dcH124cKyLZWca3gWvMHkNOX4VJcbaY8vDKfI571sXD1mIBqg8/e/BxM2sLPfeBpyHH2/6mix1TJuKawOBQoQdUcePn5HKGk9eoJT14y8p+7WbDxipdme5rWHtoYK1h8o+7pk4O3uVFnW54SXZ87tO0Hp6zN3DlgVUa9yycvu5KrFZJ+3Br6tk6b554xr3aJtVtZ6fcm8QpU3EoAEvANEgXFHvzrRNZJ0NWl+6Mycp+02ZkWnSo2d3VdNhbenMh62NjN1pExvcfmcqO++6oi2zpKamgl0XxLIvjXsa39GepM02n2ITp443zfS6A/uJ9do7Sbrw1038oHB3ODXzJde35c4dOza/GMd+58Ai5BTl7ivPns/rnpT5S2V2JkKL4Ob4e7Z4sjZ/iZshrXMnhiF3O2jCEpX0mD01hXX1tonxhZ5zzNeinrNeAa+c62ITbbd7lwOERyPyQCBoc/WwVNts07+PO7DLIR0UaDOWMilU/tt9yXXt6pW6mvIYtskGqkKl3L6l9olypDHlXn2ZJtI6OSBS7cvDTusGR3gRVdPj/JcXxAxtErvQcIrenI9F/hCzuzw8zs7WDjD+T5YOiOx57iNZea7h3yswt4/98YS7foqpIyA4vOvQ3LWNu7tokTJBXkbRQ6RpFEuXzybrOjdrK3mFJbZ02yjTOt0PUq3HfzLobodIWKJqea/HNP5Yxs9o+Ga/AaFfgP/CVFLyQjR8V/VR2osoUHUPmTAHYcSIEUlJSXIAQGB+lkOx1FvHERRstu+mj64nSTTT+mHjcx9GpRu4h9CiuvPe1jKdG+Kw4VtDBodKypI9nYEzVcP6NCpxPcm2By3rdle/AEQY+rRPMlaY4iEz4dQU+sBzb4/wjzHfJlYX/4QRUbPupuK48YjhygQ595tq/3WoQpnX3O7kXuYMXa6P/QdA+s3l2Sf6KQraphclKOt+VzelTOj3D0BsSGpqmstDjla7ksnR/wSGFvVnmZSOG6Z5BNrcr/mEqi/0K5V9aXOKw1J59nzWWhboaiQK2lWuGdqRTJyA8ZvcU5pB/0aeMnXfQ70BdwjAIPFWmIaH7pPGz1/w1PJEIw1S7c4ou4qeSUBVhvi55fldSfb8VHLSMMeRU8SnYALFCV9M+wm028GBnklguEPl21k+PWueE/3oJM9pKWUznFbVrplzX8NDy/orBPmVAp6Jz0C7HSKIqEBVhv65tT+c7eRnYiSeKCqCqi9iAxL19+X3Zst1bk6d8FzJE2i3gwARFQA+37HZ+2X/PedccomfDhVzRV541Sp8S2IX/sBPNHo5/3Gj/nq7QLsdCoioQFUS/nNLIKICoBIQFQAFgKgAKABEBUABICoACgBRAVAAiAqAAkBUABQAogKgABAVAAWAqAAoAEQFQAEgKgAKAFEBUACICoACGO5HTXhwP2oiMezuRx018lYxAABYEx5Rt/934xu7jsgViUth7v0rnn5UDoD6DJ9MkOCiykUAlCJn8eb+6zfkINHBZBJQlcWFDrmU6BTm3v//F6Si5tvaU08AAAAASUVORK5CYII=" style="width: 30%;" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -1732,7 +1716,7 @@ localhost              : ok=4    changed=2    unreachable=0    failed=0
             </aside>
             
             <aside class="page_number">
-              9/17
+              9/16
             </aside>
           </footer>
         </div>
@@ -1807,7 +1791,7 @@ tasks:
             </aside>
             
             <aside class="page_number">
-              10/17
+              10/16
             </aside>
           </footer>
         </div>
@@ -1829,13 +1813,13 @@ tasks:
 (venv)# wget -O inventory.py http://goo.gl/wxqQ1t
 (venv)# chmod +x inventory.py
 (venv)# wget -O inventory.ini http://goo.gl/Ioo1VM
----------ここまで---------
-</pre>
-<p>inventory.iniファイルのhostname_prefixを自身の環境にあわせてseminerNN-testに修正):</p>
-<pre class="literal-block">
----------ここから---------
+(venv)# vi inventory.ini ←hostname_prefixを自身の環境にあわせてseminerNN-testに修正):
+...(中略)...
 [test]
 hostname_prefix = seminer11-test
+
+(venv)# python inventory.py --list  ← inventory.pyを実行し、リストが取得できることを確認
+(略)
 ---------ここまで---------
 </pre></section>
             
@@ -1853,7 +1837,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              11/17
+              11/16
             </aside>
           </footer>
         </div>
@@ -1877,13 +1861,11 @@ hostname_prefix = seminer11-test
     &quot;changed&quot;: false,
     &quot;ping&quot;: &quot;pong&quot;
 }
-
-10.0.0.1 | success &gt;&gt; {
-    &quot;changed&quot;: false,
-    &quot;ping&quot;: &quot;pong&quot;
-}
+...(後略)
 ---------ここまで---------
-</pre></section>
+</pre>
+<p>実行イメージ:</p>
+<img alt="./_assets/t2-c2/01_check_4.png" src="data:image/png;base64,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" style="width: 30%;" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -1899,7 +1881,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              12/17
+              12/16
             </aside>
           </footer>
         </div>
@@ -1918,19 +1900,13 @@ hostname_prefix = seminer11-test
 <p>sample.yml:</p>
 <pre class="literal-block">
 ---------ここから---------
+(venv)# vi sample.yml
 ---
 - hosts: test
 
-  vars:
-    packages:
-    - httpd
-    - jq
-    - mysql-server
-    - zsh
-
   tasks:
-  - yum: name={{ item }} state=latest
-    with_items: packages
+  - yum: name=httpd state=latest
+  - service: name=httpd state=started
 ---------ここまで---------
 </pre></section>
             
@@ -1948,7 +1924,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              13/17
+              13/16
             </aside>
           </footer>
         </div>
@@ -1962,7 +1938,7 @@ hostname_prefix = seminer11-test
             <header><h1>&gt; Lesson4: 運用オペレーション(2)</h1></header>
             
             
-            <section><p>実際にPlaybook( <strong>sample.yml</strong> )を実行してみます。Playbookに記載したパッケージ(httpd,jq,mysql-server,zsh)がインストールされます。</p>
+            <section><p>実際にPlaybook( <strong>sample.yml</strong> )を実行してみます。Playbookに記載したパッケージ(httpd)がインストールされ、サービスが起動します。</p>
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
@@ -1974,13 +1950,16 @@ GATHERING FACTS ***************************************************************
 ok: [10.50.16.10]
 ok: [10.50.16.11]
 
-TASK: [yum name={{ item }} state=latest] **************************************
-changed: [10.50.16.10] =&gt; (item=httpd,jq,mysql-server,zsh)
-changed: [10.50.16.11] =&gt; (item=httpd,jq,mysql-server,zsh)
+(中略)
 
 PLAY RECAP ********************************************************************
-10.50.16.10                : ok=2    changed=1    unreachable=0    failed=0
-10.50.16.11                : ok=2    changed=1    unreachable=0    failed=0
+10.50.16.10                : ok=3    changed=0    unreachable=0    failed=0
+10.50.16.11                : ok=3    changed=0    unreachable=0    failed=0
+
+(venv)# curl 10.50.16.10
+  ... (レスポンスがあることを確認)
+(venv)# curl 10.50.16.11
+  ... (レスポンスがあることを確認)
 ---------ここまで---------
 </pre></section>
             
@@ -1998,7 +1977,7 @@ PLAY RECAP ********************************************************************
             </aside>
             
             <aside class="page_number">
-              14/17
+              14/16
             </aside>
           </footer>
         </div>
@@ -2018,13 +1997,13 @@ PLAY RECAP ********************************************************************
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-[root&#64;seminer11-step-server ~]# logout
+[root&#64;seminer11-ansible-server ~]# logout
 Connection to 118.67.96.82 closed.
 
 $ hostname
 piston-seminer
 $ /opt/support/common/9_cleanup.sh
-Deleting seminer11-step-server
+Deleting seminer11-ansible-server
 Deallocating da778dd3-db98-4477-ae25-dc6fcebaf86d...
 Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
 ---------ここまで---------
@@ -2044,7 +2023,7 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
             </aside>
             
             <aside class="page_number">
-              15/17
+              15/16
             </aside>
           </footer>
         </div>
@@ -2079,35 +2058,7 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
             </aside>
             
             <aside class="page_number">
-              16/17
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: t2-c2.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h1>おつかれさまでした</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="t2-c2.rst">t2-c2.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              17/17
+              16/16
             </aside>
           </footer>
         </div>
@@ -2152,13 +2103,13 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
       
       
       <tr id="toc-row-6">
-        <th><a href="#slide6">&gt; Lesson1: Ansibleのインストール(3)</a></th>
+        <th><a href="#slide6">&gt; Lesson1: OpenStack Clientのインストール</a></th>
         <td><a href="#slide6">6</a></td>
       </tr>
       
       
       <tr id="toc-row-7">
-        <th><a href="#slide7">&gt; Lesson1: Ansibleのインストール(4)</a></th>
+        <th><a href="#slide7">&gt; Lesson1: Ansibleの設定</a></th>
         <td><a href="#slide7">7</a></td>
       </tr>
       
@@ -2214,12 +2165,6 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
       <tr id="toc-row-16">
         <th><a href="#slide16">&gt; まとめ</a></th>
         <td><a href="#slide16">16</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-17">
-        <th><a href="#slide17">おつかれさまでした</a></th>
-        <td><a href="#slide17">17</a></td>
       </tr>
       
       

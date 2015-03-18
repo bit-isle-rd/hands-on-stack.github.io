@@ -10,7 +10,7 @@
 - ここでは、OpenStack 上への三階層ウェブシステムの自動構築を行います。
 - システムは DB サーバー、APP サーバー、WEB サーバー 1 台ずつで構成される簡単なものですが、
   ``userdata`` と ``metadata`` というOpenStackにデータを渡す仕組みを活用して自動インストールと設定を行います。
-- 仮想マシン毎に違った起動処理を行う方法を学べます。
+- 各サーバーは関係するサーバーからのアクセスのみ許可するようにセキュリティグループが設定されます。
 
 .. image:: ./_assets/t2-c1/01_sample_app.png
    :width: 80%
@@ -21,23 +21,19 @@
 操作環境の準備
 ================
 
-- 下記のコマンドで、演習環境の準備を行います。コマンドの実行が完了するまで数分かかります。
-- 3階層システムに必要なセキュリティーグループなどを作成しています。
+- 下記のコマンドで、演習環境の準備を行います。
+- 不要なリソースの削除と3階層システムに必要なセキュリティーグループを作成しています。
 - サンプルファイルがホームディレクトリに用意されます。
 
 **コマンド実行**::
 
+  ---- ここから ----
   $ /opt/support/t2-c1/1_init.sh
-          <--- ディレクトリー「/opt/support/t2-c1」を使用します。
   ...（中略）... 
-  | ID                                   | Name        | Status | Task State | Power State | Networks           |
-  +--------------------------------------+-------------+--------+------------+-------------+--------------------+
-  | b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | ACTIVE | -          | Running     | private=10.0.0.1   |
-  +--------------------------------------+-------------+--------+------------+-------------+--------------------+
   ============================================================
   Initialization Completed!
   ============================================================
-
+  ---- ここまで ----
 
 ----
 
@@ -45,11 +41,12 @@ userdata による自動インストール (1)
 ===================================
 
 - 最初に DB サーバーを起動します。
-- OpenStack (Nova) には userdata という仕組みがあります。 userdata スクリプトを指定して VM を作成すると、 VM 起動時に自動的に実行されます。
-- ここでは、サンプルアプリケーションを git clone し、インストールを行うスクリプトを用意しています。
+- OpenStack には userdata という仕組みがあります。 VM起動時にuserdata スクリプトを指定すると自動的に実行されます。
+- DBサーバー起動時に使用するuserdata スクリプトを開き内容を確認してください。
 
-スクリプトの内容::
+スクリプトの内容確認::
 
+  --- ここから ---
   $ cat userdata_dbs.txt 
   #!/bin/bash
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -59,6 +56,9 @@ userdata による自動インストール (1)
   git checkout -b v1.0 remotes/origin/v1.0
   sh /root/sample-app/server-setup/install_db.sh
   echo "### end userdata_dbs"
+  --- ここまで ---
+
+ここでは、サンプルアプリケーションを git clone し、インストールを行うスクリプトとなっています。
 
 ----
 
@@ -73,10 +73,12 @@ userdata による自動インストール (2)
 
 **コマンド実行**::
 
+  ---- ここから ----
   $ nova boot --flavor m1.xsmall --image "centos-base" \
       --key-name default --user-data userdata_dbs.txt \
       --security-groups sg-for-step-server,sg-all-from-dbs-net \
       dbs01
+  ---- ここまで ----
 
 ----
 
@@ -91,6 +93,7 @@ userdata による自動インストール (3)
 
 コマンド実行::
 
+  ---- ここから ----
   $ watch -n5 nova console-log --length 10 dbs01
 
   ...（中略）... 
@@ -98,18 +101,20 @@ userdata による自動インストール (3)
   Kernel 2.6.32-504.el6.x86_64 on an x86_64
    
   dbs01 login:
+  ---- ここまで ----
 
 ----
 
 metadata を利用した設定 (1)
 ===========================
 
-- 次は APP サーバーの起動です。今度は metadata を利用して、
-  DB サーバーの IP アドレス (``dsb_ip``) を設定します。
-  後半がその部分です。詳細は後で確認します。
+- 次は APP サーバーの起動スクリプトです。今度は metadata を利用して、
+  DB サーバーの IP アドレス (``dbs_ip``) を取得・設定します。
+
 
 スクリプトの内容::
 
+  ---- ここから ----
   $ cat userdata_app.txt 
   #!/bin/bash
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -124,7 +129,7 @@ metadata を利用した設定 (1)
       | jq -r '.["meta"]["dbs_ip"]'`
   crudini --set /root/sample-app/endpoint.conf db-server db_host $DBS_IP
   sh /root/sample-app/server-setup/rest.init.sh start
-
+  --- ここまで ----
 
 ----
 
@@ -135,22 +140,23 @@ metadata を利用した設定 (2)
 
   - 先ほどのスクリプトを userdata に指定します。
   - ``--meta`` オプションで DB サーバーの IP アドレスを "``dbs_ip``" という名前で渡します。
+  - 起動が確認できたら、APPサーバーからDBサーバーの3306ポートへのアクセスを許可します。
 
 コマンド実行::
 
+  ---- ここから ----
   $ MY_DBS_IP=`get_instance_ip dbs01 private`
   $ echo $MY_DBS_IP
   10.50.16.8
   $ nova boot --flavor m1.xsmall --image "centos-base" \
       --key-name default --user-data userdata_app.txt \
-      --security-groups \
-          sg-for-step-server,sg-all-from-app-net \
+      --security-groups sg-for-step-server,sg-all-from-app-net \
       --meta dbs_ip=${MY_DBS_IP} \
       app01
   $ wait_instance app01 private
   $ MY_APP_IP=`get_instance_ip app01 private`
   $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
-
+  ---- ここまで ----
 ----
 
 metadata を利用した設定 (3) 
@@ -163,6 +169,7 @@ metadata を利用した設定 (3)
 
 コマンド実行::
 
+  ---- ここから ----
   $ watch -n5 nova console-log --length 10 app01
 
   ...（中略）...
@@ -170,7 +177,7 @@ metadata を利用した設定 (3)
   Kernel 2.6.32-504.el6.x86_64 on an x86_64
 
   app01 login:
-
+  ---- ここまで ----
 ----
 
 metadata を利用した設定 (4)
@@ -182,11 +189,12 @@ metadata を利用した設定 (4)
 
 コマンド実行::
 
+  ---- ここから ----
   $ curl $MY_APP_IP:5555/bbs
   {}                  ← データが無いため空になりますが、正常に応答しています。
+  ---- ここまで ----
 
 ----
-
 
 web サーバーの起動 (1)
 ======================
@@ -196,7 +204,8 @@ web サーバーの起動 (1)
   後半がその部分です。
 
 スクリプトの内容::
-
+  
+  ---- ここから ----
   $ cat userdata_web.txt 
   #!/bin/bash
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -211,18 +220,20 @@ web サーバーの起動 (1)
       | jq -r '.["meta"]["app_ip"]'`
   crudini --set /root/sample-app/endpoint.conf rest-server rest_host $APP_IP
   sh /root/sample-app/server-setup/web.init.sh start
-
+  ---- ここまで ----
 
 ----
 
 web サーバーの起動 (2)
 ======================
 
-- 下記のコマンドを実行し、WEB サーバーを起動します。 APP サーバーとほとんど同じです。
+- 下記のコマンドを実行し、WEB サーバーを起動します。 
 - ``--meta`` オプションで APP サーバーの IP アドレスを "``app_ip``" という名前で渡します。
+- 起動が確認できたらWEBサーバーのIPアドレスから5555ポートへのアクセスを許可します。
 
 コマンド実行::
-
+  
+  ---- ここから ----
   $ echo $MY_APP_IP
   10.50.16.9
   $ nova boot \
@@ -233,7 +244,8 @@ web サーバーの起動 (2)
       web01
   $ wait_instance web01 private
   $ MY_WEB_IP=`get_instance_ip web01 private`
-  $ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 $MY_WEB_IP/32
+  $ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 ${MY_WEB_IP}/32
+  ---- ここまで ----
 
 ----
 
@@ -247,6 +259,7 @@ web サーバーの起動 (3)
 
 コマンド実行::
 
+  ---- ここから ----
   $ watch -n5 nova console-log --length 10 web01
 
   ...（中略）...
@@ -254,6 +267,7 @@ web サーバーの起動 (3)
   Kernel 2.6.32-504.el6.x86_64 on an x86_64
 
   web01 login:
+  ---- ここまで ----
 
 ----
 
@@ -266,20 +280,17 @@ web サーバーの起動 (3)
 
 コマンド実行::
 
+  ---- ここから ----
   $ curl $MY_WEB_IP
   <!doctype html>
   <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title></title>
-    </head>
-    <body>
-      <form method="POST" action="/">
-        <label for="text">Please write something and hit enter</label> <input id="text" name="text" type="text" value="">
-      </form>
+      (中略)
       <br/>
     </body>
   </html>
+  ---- ここまで ----
 ----
 
 アプリケーションの動作確認(2)
@@ -303,8 +314,10 @@ userdata/metadata の裏側
 
 コマンド実行::
 
+  ---- ここから ----
   $ ssh  root@$MY_WEB_IP
   [root@web01 ~]# 
+  ---- ここまで ----
 
 ----
 
@@ -316,6 +329,7 @@ userdata/metadata の裏側
 
 コマンド実行::
 
+  ---- ここから ----
   [root@web01 ~]# 
   [root@web01 ~]# curl -s http://169.254.169.254/openstack/latest/; echo
   meta_data.json
@@ -330,6 +344,7 @@ userdata/metadata の裏側
       | jq -r '.["meta"]["app_ip"]'`
   crudini --set /root/sample-app/endpoint.conf rest-server rest_host $APP_IP
   sh /root/sample-app/server-setup/web.init.sh start
+  ---- ここまで ----
 
 ----
 
@@ -340,6 +355,7 @@ userdata/metadata の裏側
 
 コマンド実行::
 
+  ---- ここから ----
   [root@web01 ~]# curl -s \
       http://169.254.169.254/openstack/latest/meta_data.json
   [root@web01 ~]# curl -s \
@@ -354,7 +370,7 @@ userdata/metadata の裏側
     },
     ...
   }
-
+  ---- ここまで ----
 ----
 
 仮想マシン内からの metadata 参照
@@ -365,10 +381,12 @@ userdata/metadata の裏側
 
 コマンド実行::
 
+  ---- ここから ----
   [root@web01 ~]# curl -s \
       http://169.254.169.254/openstack/latest/meta_data.json \
       | jq -r '.["meta"]["app_ip"]'
   172.16.10.1
+  ---- ここまで ----
 
 userdata での参照例::
 
@@ -387,12 +405,14 @@ userdata での参照例::
 
 コマンド実行の様子::
 
+  ---- ここから ----
   $ /opt/support/common/9_cleanup.sh
   ### delete all instances
   # delete instance: 43a929db-44ca-4754-a8bb-bd3c1981affa
   # delete instance: 0b602aaf-5a18-4441-9876-c21300e1ff2d
   ...
   ########## completed !!
+  ---- ここまで ----
 
 ----
 
@@ -408,7 +428,4 @@ userdata での参照例::
 - より複雑な設定を行う場合は `Ansible を用いた設定 <./t2-c2.html>`_ と組み合わせるなど、
   いろいろ工夫するとよいでしょう。
 
-----
 
-おつかれさまでした
-==================

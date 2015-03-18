@@ -25,7 +25,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>テーマ：基礎操作</title>
+    <title>仮想サーバーを1台起動してみる(CLI)</title>
     <!-- Styles -->
     
     <style type="text/css" media="print">
@@ -1323,21 +1323,45 @@ aside {
     </div>
     <div class="slides">
       
-      <!-- slide source: index01.rst -->
+      <!-- slide source: t1-c2.rst -->
       <div class="slide-wrapper">
         <div class="slide">
           <div class="inner">
             
-            <header><h1>テーマ：基礎操作</h1></header>
+            <header><h1>仮想サーバーを1台起動してみる(CLI)</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>概要</h1></header>
             
             
             <section><ul class="simple">
-<li>ここでは仮想サーバーの構築、仮想ネットワークの構成、簡単な自動化といった、OpenStack上での基礎操作を体験することができます。</li>
-<li>以下から体験したい内容を選択してください。<ul>
-<li><a class="reference external" href="./t1-c1.html">仮想サーバーを1台起動してみる(ダッシュボード)</a></li>
-<li><a class="reference external" href="./t1-c2.html">仮想サーバーを1台起動してみる(CLI)</a></li>
-</ul>
-</li>
+<li>ここではOpenStack上にコマンドラインを利用して仮想サーバーを１台起動します。</li>
+<li>ダッシュボードを利用した仮想サーバーの起動と比較するとわかりやすいと思います。</li>
 </ul></section>
             
           </div>
@@ -1350,11 +1374,307 @@ aside {
           <footer>
             
             <aside class="source">
-              Source: <a href="index01.rst">index01.rst</a>
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
             </aside>
             
             <aside class="page_number">
-              1/1
+              2/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>ログインIDの確認</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>ログインIDを確認するには、以下のコマンドを実行します。</li>
+</ul>
+<p>スクリプトの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+$ check_id
+---------ここまで---------
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>仮想サーバーの起動</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>以下のコマンドを実行して、仮想サーバーを起動します。</li>
+</ul>
+<p>コマンドの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+
+$ nova boot --flavor m1.xsmall --image &quot;centos-base&quot; \
+--key-name default --security-groups default \
+${USER}-vm-from-cli
+---------ここまで---------
+</pre>
+<p>${USER}の部分は環境変数により自動でseminerXXが設定されます。</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>仮想サーバーの起動状態の確認</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>Horizonからインスタンス一覧を確認してみてください。</li>
+<li>合わせて、以下のコマンドを実行し、仮想サーバーの起動状態を確認します。</li>
+</ul>
+<p>コマンドの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+$ nova list
+$ watch -n 10 nova console-log --length 20 ${USER}-vm-from-cli
+---------ここまで---------
+</pre>
+<p>${USER}の部分は環境変数により自動でseminerXXが設定されます。</p>
+<p>終了するには <em>Ctrl-c</em> になります。</p>
+<p>ログインプロンプトが表示されたら次の操作に移ります。</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>セキュリティグループの設定</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>OpenStack上で起動したインスタンスにはセキュリティグループというアクセスポリシーが適用されます。今回は起動時にdefaultを指定しました。defaultセキュリティグループの設定を確認します。</li>
+<li>今回の環境では踏み台サーバーのIPアドレスからのSSH接続(22番ポート)を許容するように予め設定されています。</li>
+</ul>
+<p>コマンドの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+$ nova secgroup-list-rules default
+$ nova secgroup-add-rule default tcp 22 22 10.50.16.6/32
++-------------+-----------+---------+---------------+--------------+
+| IP Protocol | From Port | To Port | IP Range      | Source Group |
++-------------+-----------+---------+---------------+--------------+
+| tcp         | 22        | 22      | 10.50.16.6/32 |              |
++-------------+-----------+---------+---------------+--------------+
+---------ここまで---------
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>稼働サーバーへのログイン</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>仮想サーバーへSSHでログインしてみます。</li>
+<li>今回利用した <em>default</em> キーペアは、既にログインした <em>seminerXX</em> 環境に秘密鍵が保存してあるので、そちらを利用して仮想サーバーへログインしてみます。</li>
+</ul>
+<p>コマンドの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+$ nova list
++--------------------------------------+-----------------------+--------+------------+-------------+---------------------+
+| ID                                   | Name                  | Status | Task State | Power State | Networks            |
++--------------------------------------+-----------------------+--------+------------+-------------+---------------------+
+| e68dd840-2535-47ca-b597-63994f8e2a39 | seminer01-vm-from-cli | ACTIVE | -          | Running     | private=&lt;IPアドレス&gt;|
++--------------------------------------+-----------------------+--------+------------+-------------+---------------------+
+$ cd $HOME
+$ ssh -i default.pem root&#64;&lt;IPアドレス&gt;
+---------ここまで---------
+</pre>
+<p><em>&lt;IPアドレス&gt;</em> の部分は、実際に表示される値に読み替えてください。</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>後かたずけ</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>起動した仮想マシンを削除します。</li>
+<li>削除後、以下のようにリソースが削除されていることを確認します。</li>
+</ul>
+<p>コマンドの実行:</p>
+<pre class="literal-block">
+---------ここから---------
+$ nova delete ${USER}-vm-from-cli
+$ nova list
++----+------+--------+------------+-------------+----------+
+| ID | Name | Status | Task State | Power State | Networks |
++----+------+--------+------------+-------------+----------+
++----+------+--------+------------+-------------+----------+
+
+---------ここまで---------
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t1-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>ポイントとまとめ</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>OpenStackではダッシュボードと同様の操作をコマンドラインから実施することができます。<ul>
+<li>実際にはコマンドラインでできることの一部を、ダッシュボードから実行できる、というデザインです。</li>
+</ul>
+</li>
+<li>コマンドラインでの仮想マシン作成は、シェルスクリプト化することで簡単に自動化可能です。</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t1-c2.rst">t1-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/9
             </aside>
           </footer>
         </div>
@@ -1369,8 +1689,56 @@ aside {
       <caption>Table of Contents</caption>
       
       <tr id="toc-row-1">
-        <th><a href="#slide1">テーマ：基礎操作</a></th>
+        <th><a href="#slide1">仮想サーバーを1台起動してみる(CLI)</a></th>
         <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">概要</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">ログインIDの確認</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">仮想サーバーの起動</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">仮想サーバーの起動状態の確認</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">セキュリティグループの設定</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">稼働サーバーへのログイン</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">後かたずけ</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">ポイントとまとめ</a></th>
+        <td><a href="#slide9">9</a></td>
       </tr>
       
       

@@ -1345,7 +1345,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/22
+              1/21
             </aside>
           </footer>
         </div>
@@ -1363,7 +1363,7 @@ aside {
 <li>ここでは、OpenStack 上への三階層ウェブシステムの自動構築を行います。</li>
 <li>システムは DB サーバー、APP サーバー、WEB サーバー 1 台ずつで構成される簡単なものですが、
 <tt class="docutils literal">userdata</tt> と <tt class="docutils literal">metadata</tt> というOpenStackにデータを渡す仕組みを活用して自動インストールと設定を行います。</li>
-<li>仮想マシン毎に違った起動処理を行う方法を学べます。</li>
+<li>各サーバーは関係するサーバーからのアクセスのみ許可するようにセキュリティグループが設定されます。</li>
 </ul>
 <img alt="./_assets/t2-c1/01_sample_app.png" src="data:image/png;base64,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" style="width: 80%;" /></section>
             
@@ -1381,7 +1381,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/22
+              2/21
             </aside>
           </footer>
         </div>
@@ -1396,22 +1396,19 @@ aside {
             
             
             <section><ul class="simple">
-<li>下記のコマンドで、演習環境の準備を行います。コマンドの実行が完了するまで数分かかります。</li>
-<li>3階層システムに必要なセキュリティーグループなどを作成しています。</li>
+<li>下記のコマンドで、演習環境の準備を行います。</li>
+<li>不要なリソースの削除と3階層システムに必要なセキュリティーグループを作成しています。</li>
 <li>サンプルファイルがホームディレクトリに用意されます。</li>
 </ul>
 <p><strong>コマンド実行</strong>:</p>
 <pre class="literal-block">
+---- ここから ----
 $ /opt/support/t2-c1/1_init.sh
-        &lt;--- ディレクトリー「/opt/support/t2-c1」を使用します。
 ...（中略）...
-| ID                                   | Name        | Status | Task State | Power State | Networks           |
-+--------------------------------------+-------------+--------+------------+-------------+--------------------+
-| b5440947-e245-4c7c-8d4f-301e5b75f34a | step-server | ACTIVE | -          | Running     | private=10.0.0.1   |
-+--------------------------------------+-------------+--------+------------+-------------+--------------------+
 ============================================================
 Initialization Completed!
 ============================================================
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1428,7 +1425,7 @@ Initialization Completed!
             </aside>
             
             <aside class="page_number">
-              3/22
+              3/21
             </aside>
           </footer>
         </div>
@@ -1444,11 +1441,12 @@ Initialization Completed!
             
             <section><ul class="simple">
 <li>最初に DB サーバーを起動します。</li>
-<li>OpenStack (Nova) には userdata という仕組みがあります。 userdata スクリプトを指定して VM を作成すると、 VM 起動時に自動的に実行されます。</li>
-<li>ここでは、サンプルアプリケーションを git clone し、インストールを行うスクリプトを用意しています。</li>
+<li>OpenStack には userdata という仕組みがあります。 VM起動時にuserdata スクリプトを指定すると自動的に実行されます。</li>
+<li>DBサーバー起動時に使用するuserdata スクリプトを開き内容を確認してください。</li>
 </ul>
-<p>スクリプトの内容:</p>
+<p>スクリプトの内容確認:</p>
 <pre class="literal-block">
+--- ここから ---
 $ cat userdata_dbs.txt
 #!/bin/bash
 cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -1458,7 +1456,9 @@ cd sample-app
 git checkout -b v1.0 remotes/origin/v1.0
 sh /root/sample-app/server-setup/install_db.sh
 echo &quot;### end userdata_dbs&quot;
-</pre></section>
+--- ここまで ---
+</pre>
+<p>ここでは、サンプルアプリケーションを git clone し、インストールを行うスクリプトとなっています。</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -1474,7 +1474,7 @@ echo &quot;### end userdata_dbs&quot;
             </aside>
             
             <aside class="page_number">
-              4/22
+              4/21
             </aside>
           </footer>
         </div>
@@ -1498,10 +1498,12 @@ DB サーバーの仮想マシンを起動します。<ul>
 </ul>
 <p><strong>コマンド実行</strong>:</p>
 <pre class="literal-block">
+---- ここから ----
 $ nova boot --flavor m1.xsmall --image &quot;centos-base&quot; \
     --key-name default --user-data userdata_dbs.txt \
     --security-groups sg-for-step-server,sg-all-from-dbs-net \
     dbs01
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1518,7 +1520,7 @@ $ nova boot --flavor m1.xsmall --image &quot;centos-base&quot; \
             </aside>
             
             <aside class="page_number">
-              5/22
+              5/21
             </aside>
           </footer>
         </div>
@@ -1541,6 +1543,7 @@ $ nova boot --flavor m1.xsmall --image &quot;centos-base&quot; \
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ watch -n5 nova console-log --length 10 dbs01
 
 ...（中略）...
@@ -1548,6 +1551,7 @@ CentOS release 6.6 (Final)
 Kernel 2.6.32-504.el6.x86_64 on an x86_64
 
 dbs01 login:
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1564,7 +1568,7 @@ dbs01 login:
             </aside>
             
             <aside class="page_number">
-              6/22
+              6/21
             </aside>
           </footer>
         </div>
@@ -1579,12 +1583,12 @@ dbs01 login:
             
             
             <section><ul class="simple">
-<li>次は APP サーバーの起動です。今度は metadata を利用して、
-DB サーバーの IP アドレス (<tt class="docutils literal">dsb_ip</tt>) を設定します。
-後半がその部分です。詳細は後で確認します。</li>
+<li>次は APP サーバーの起動スクリプトです。今度は metadata を利用して、
+DB サーバーの IP アドレス (<tt class="docutils literal">dbs_ip</tt>) を取得・設定します。</li>
 </ul>
 <p>スクリプトの内容:</p>
 <pre class="literal-block">
+---- ここから ----
 $ cat userdata_app.txt
 #!/bin/bash
 cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -1599,6 +1603,7 @@ DBS_IP=`curl -s http://169.254.169.254/openstack/latest/meta_data.json \
     | jq -r '.[&quot;meta&quot;][&quot;dbs_ip&quot;]'`
 crudini --set /root/sample-app/endpoint.conf db-server db_host $DBS_IP
 sh /root/sample-app/server-setup/rest.init.sh start
+--- ここまで ----
 </pre></section>
             
           </div>
@@ -1615,7 +1620,7 @@ sh /root/sample-app/server-setup/rest.init.sh start
             </aside>
             
             <aside class="page_number">
-              7/22
+              7/21
             </aside>
           </footer>
         </div>
@@ -1633,23 +1638,25 @@ sh /root/sample-app/server-setup/rest.init.sh start
 <li>下記のコマンドを実行し、APP サーバーを起動します。<ul>
 <li>先ほどのスクリプトを userdata に指定します。</li>
 <li><tt class="docutils literal"><span class="pre">--meta</span></tt> オプションで DB サーバーの IP アドレスを &quot;<tt class="docutils literal">dbs_ip</tt>&quot; という名前で渡します。</li>
+<li>起動が確認できたら、APPサーバーからDBサーバーの3306ポートへのアクセスを許可します。</li>
 </ul>
 </li>
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ MY_DBS_IP=`get_instance_ip dbs01 private`
 $ echo $MY_DBS_IP
 10.50.16.8
 $ nova boot --flavor m1.xsmall --image &quot;centos-base&quot; \
     --key-name default --user-data userdata_app.txt \
-    --security-groups \
-        sg-for-step-server,sg-all-from-app-net \
+    --security-groups sg-for-step-server,sg-all-from-app-net \
     --meta dbs_ip=${MY_DBS_IP} \
     app01
 $ wait_instance app01 private
 $ MY_APP_IP=`get_instance_ip app01 private`
 $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1666,7 +1673,7 @@ $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
             </aside>
             
             <aside class="page_number">
-              8/22
+              8/21
             </aside>
           </footer>
         </div>
@@ -1689,6 +1696,7 @@ $ nova secgroup-add-rule sg-all-from-dbs-net tcp 3306 3306 $MY_APP_IP/32
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ watch -n5 nova console-log --length 10 app01
 
 ...（中略）...
@@ -1696,6 +1704,7 @@ CentOS release 6.6 (Final)
 Kernel 2.6.32-504.el6.x86_64 on an x86_64
 
 app01 login:
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1712,7 +1721,7 @@ app01 login:
             </aside>
             
             <aside class="page_number">
-              9/22
+              9/21
             </aside>
           </footer>
         </div>
@@ -1732,8 +1741,10 @@ app01 login:
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ curl $MY_APP_IP:5555/bbs
 {}                  ← データが無いため空になりますが、正常に応答しています。
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1750,7 +1761,7 @@ $ curl $MY_APP_IP:5555/bbs
             </aside>
             
             <aside class="page_number">
-              10/22
+              10/21
             </aside>
           </footer>
         </div>
@@ -1771,6 +1782,7 @@ $ curl $MY_APP_IP:5555/bbs
 </ul>
 <p>スクリプトの内容:</p>
 <pre class="literal-block">
+---- ここから ----
 $ cat userdata_web.txt
 #!/bin/bash
 cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -1785,6 +1797,7 @@ APP_IP=`curl -s http://169.254.169.254/openstack/latest/meta_data.json \
     | jq -r '.[&quot;meta&quot;][&quot;app_ip&quot;]'`
 crudini --set /root/sample-app/endpoint.conf rest-server rest_host $APP_IP
 sh /root/sample-app/server-setup/web.init.sh start
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1801,7 +1814,7 @@ sh /root/sample-app/server-setup/web.init.sh start
             </aside>
             
             <aside class="page_number">
-              11/22
+              11/21
             </aside>
           </footer>
         </div>
@@ -1816,11 +1829,13 @@ sh /root/sample-app/server-setup/web.init.sh start
             
             
             <section><ul class="simple">
-<li>下記のコマンドを実行し、WEB サーバーを起動します。 APP サーバーとほとんど同じです。</li>
+<li>下記のコマンドを実行し、WEB サーバーを起動します。</li>
 <li><tt class="docutils literal"><span class="pre">--meta</span></tt> オプションで APP サーバーの IP アドレスを &quot;<tt class="docutils literal">app_ip</tt>&quot; という名前で渡します。</li>
+<li>起動が確認できたらWEBサーバーのIPアドレスから5555ポートへのアクセスを許可します。</li>
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ echo $MY_APP_IP
 10.50.16.9
 $ nova boot \
@@ -1831,7 +1846,8 @@ $ nova boot \
     web01
 $ wait_instance web01 private
 $ MY_WEB_IP=`get_instance_ip web01 private`
-$ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 $MY_WEB_IP/32
+$ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 ${MY_WEB_IP}/32
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1848,7 +1864,7 @@ $ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 $MY_WEB_IP/32
             </aside>
             
             <aside class="page_number">
-              12/22
+              12/21
             </aside>
           </footer>
         </div>
@@ -1871,6 +1887,7 @@ $ nova secgroup-add-rule sg-all-from-app-net tcp 5555 5555 $MY_WEB_IP/32
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ watch -n5 nova console-log --length 10 web01
 
 ...（中略）...
@@ -1878,6 +1895,7 @@ CentOS release 6.6 (Final)
 Kernel 2.6.32-504.el6.x86_64 on an x86_64
 
 web01 login:
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1894,7 +1912,7 @@ web01 login:
             </aside>
             
             <aside class="page_number">
-              13/22
+              13/21
             </aside>
           </footer>
         </div>
@@ -1913,20 +1931,17 @@ web01 login:
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ curl $MY_WEB_IP
 &lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
-    &lt;title&gt;&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;form method=&quot;POST&quot; action=&quot;/&quot;&gt;
-      &lt;label for=&quot;text&quot;&gt;Please write something and hit enter&lt;/label&gt; &lt;input id=&quot;text&quot; name=&quot;text&quot; type=&quot;text&quot; value=&quot;&quot;&gt;
-    &lt;/form&gt;
+    (中略)
     &lt;br/&gt;
   &lt;/body&gt;
 &lt;/html&gt;
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -1943,7 +1958,7 @@ $ curl $MY_WEB_IP
             </aside>
             
             <aside class="page_number">
-              14/22
+              14/21
             </aside>
           </footer>
         </div>
@@ -1963,7 +1978,7 @@ $ curl $MY_WEB_IP
 </ul>
 </li>
 </ul>
-<img alt="./_assets/t2-c1/02_app.png" src="./_assets/t2-c1/02_app.png" style="width: 100%;" /></section>
+<img alt="./_assets/t2-c1/02_app.png" src="data:image/png;base64,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vxkAYE1gGgbeSzYAAUX+tgAAnMWYhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAA9WIaBgAAQL2YhgEAAFAvpmEAAADUi2kYAAAAtXr33f8DRgKr6xk83wIAAAAASUVORK5CYII=" style="width: 100%;" /></section>
             
           </div>
           <div class="presenter_notes">
@@ -1979,7 +1994,7 @@ $ curl $MY_WEB_IP
             </aside>
             
             <aside class="page_number">
-              15/22
+              15/21
             </aside>
           </footer>
         </div>
@@ -1999,8 +2014,10 @@ $ curl $MY_WEB_IP
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 $ ssh  root&#64;$MY_WEB_IP
 [root&#64;web01 ~]#
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -2017,7 +2034,7 @@ $ ssh  root&#64;$MY_WEB_IP
             </aside>
             
             <aside class="page_number">
-              16/22
+              16/21
             </aside>
           </footer>
         </div>
@@ -2037,6 +2054,7 @@ $ ssh  root&#64;$MY_WEB_IP
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 [root&#64;web01 ~]#
 [root&#64;web01 ~]# curl -s http://169.254.169.254/openstack/latest/; echo
 meta_data.json
@@ -2051,6 +2069,7 @@ APP_IP=`curl -s http://169.254.169.254/openstack/latest/meta_data.json \
     | jq -r '.[&quot;meta&quot;][&quot;app_ip&quot;]'`
 crudini --set /root/sample-app/endpoint.conf rest-server rest_host $APP_IP
 sh /root/sample-app/server-setup/web.init.sh start
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -2067,7 +2086,7 @@ sh /root/sample-app/server-setup/web.init.sh start
             </aside>
             
             <aside class="page_number">
-              17/22
+              17/21
             </aside>
           </footer>
         </div>
@@ -2086,6 +2105,7 @@ sh /root/sample-app/server-setup/web.init.sh start
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 [root&#64;web01 ~]# curl -s \
     http://169.254.169.254/openstack/latest/meta_data.json
 [root&#64;web01 ~]# curl -s \
@@ -2100,6 +2120,7 @@ sh /root/sample-app/server-setup/web.init.sh start
   },
   ...
 }
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -2116,7 +2137,7 @@ sh /root/sample-app/server-setup/web.init.sh start
             </aside>
             
             <aside class="page_number">
-              18/22
+              18/21
             </aside>
           </footer>
         </div>
@@ -2136,10 +2157,12 @@ sh /root/sample-app/server-setup/web.init.sh start
 </ul>
 <p>コマンド実行:</p>
 <pre class="literal-block">
+---- ここから ----
 [root&#64;web01 ~]# curl -s \
     http://169.254.169.254/openstack/latest/meta_data.json \
     | jq -r '.[&quot;meta&quot;][&quot;app_ip&quot;]'
 172.16.10.1
+---- ここまで ----
 </pre>
 <p>userdata での参照例:</p>
 <pre class="literal-block">
@@ -2163,7 +2186,7 @@ crudini --set /root/sample-app/endpoint.conf \
             </aside>
             
             <aside class="page_number">
-              19/22
+              19/21
             </aside>
           </footer>
         </div>
@@ -2183,12 +2206,14 @@ crudini --set /root/sample-app/endpoint.conf \
 </ul>
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
+---- ここから ----
 $ /opt/support/common/9_cleanup.sh
 ### delete all instances
 # delete instance: 43a929db-44ca-4754-a8bb-bd3c1981affa
 # delete instance: 0b602aaf-5a18-4441-9876-c21300e1ff2d
 ...
 ########## completed !!
+---- ここまで ----
 </pre></section>
             
           </div>
@@ -2205,7 +2230,7 @@ $ /opt/support/common/9_cleanup.sh
             </aside>
             
             <aside class="page_number">
-              20/22
+              20/21
             </aside>
           </footer>
         </div>
@@ -2244,35 +2269,7 @@ userdata/metadata という OpenStack にデータを渡す仕組みを活用し
             </aside>
             
             <aside class="page_number">
-              21/22
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: t2-c1.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h1>おつかれさまでした</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="t2-c1.rst">t2-c1.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              22/22
+              21/21
             </aside>
           </footer>
         </div>
@@ -2409,12 +2406,6 @@ userdata/metadata という OpenStack にデータを渡す仕組みを活用し
       <tr id="toc-row-21">
         <th><a href="#slide21">ポイントとまとめ</a></th>
         <td><a href="#slide21">21</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-22">
-        <th><a href="#slide22">おつかれさまでした</a></th>
-        <td><a href="#slide22">22</a></td>
       </tr>
       
       

@@ -1367,8 +1367,8 @@ aside {
             
             <section><ul class="simple">
 <li>端末でのログイン方法<ul>
-<li>ご利用の端末からSSHクライアントソフト を起動して、seminer <em>XX</em> ユーザーでログインします。</li>
-<li><em>XX</em> 部分は、セミナー時にご案内いたします。</li>
+<li>ご利用の端末からSSHクライアントソフト を起動して、指定されたIPアドレスに seminer <em>XX</em> ユーザーでログインします。</li>
+<li>認証はSSH鍵認証となります。指定のSSH鍵を使用してログインしてください。</li>
 </ul>
 </li>
 </ul>
@@ -1380,7 +1380,7 @@ $ ssh seminerXX
 [seminerXX&#64;piston-seminer ~]$
 ---------ここまで---------
 </pre>
-<p>ログインした先の <em>XX</em> が指定された番号と一致していることを確認してください。</p></section>
+<p>ログインした先の <em>XX</em> が各自の指定された番号と一致していることを確認してください。</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -1412,7 +1412,8 @@ $ ssh seminerXX
             
             <section><ul class="simple">
 <li>Horizonへのログイン方法<ul>
-<li>ログインIDを確認するには、以下のコマンドを実行します。</li>
+<li><a class="reference external" href="http://xxxxxxx.xxx.xx">http://xxxxxxx.xxx.xx</a> へアクセスしログインします。</li>
+<li>ログインIDを確認するには、ssh接続した環境で以下のコマンドを実行します。</li>
 </ul>
 </li>
 </ul>
@@ -1452,8 +1453,9 @@ $ check_id
             
             
             <section><ul class="simple">
-<li><a class="reference external" href="./t2-c1.html">1. ３階層システムの構築自動化</a></li>
-<li><a class="reference external" href="./t2-c2.html">2. Ansibleを使用した更なる自動化</a></li>
+<li><a class="reference external" href="./index01.html">1. 基本操作</a></li>
+<li><a class="reference external" href="./t2-c1.html">2. ３階層システムの構築自動化</a></li>
+<li><a class="reference external" href="./t2-c2.html">3. Ansibleを使用した更なる自動化</a></li>
 <li>ヘルプ<ul>
 <li>「t」「h」キーで、スライドの目次、操作方法を表示できます。</li>
 <li>操作方法でわからないことがあれば、講師までお声がけください。</li>
