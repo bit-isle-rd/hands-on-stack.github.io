@@ -1517,17 +1517,16 @@ $ watch -n 10 nova console-log --length 20 ${USER}-vm-from-cli
             
             <section><ul class="simple">
 <li>OpenStack上で起動したインスタンスにはセキュリティグループというアクセスポリシーが適用されます。今回は起動時にdefaultを指定しました。defaultセキュリティグループの設定を確認します。</li>
-<li>今回の環境では踏み台サーバーのIPアドレスからのSSH接続(22番ポート)を許容するように予め設定されています。</li>
+<li>今回の環境では全てのIPアドレスからのSSH接続(22番ポート)を許容するように予め設定されています。</li>
 </ul>
 <p>コマンドの実行:</p>
 <pre class="literal-block">
 ---------ここから---------
 $ nova secgroup-list-rules default
-$ nova secgroup-add-rule default tcp 22 22 10.50.16.6/32
 +-------------+-----------+---------+---------------+--------------+
 | IP Protocol | From Port | To Port | IP Range      | Source Group |
 +-------------+-----------+---------+---------------+--------------+
-| tcp         | 22        | 22      | 10.50.16.6/32 |              |
+| tcp         | 22        | 22      | 0.0.0.0/0     |              |
 +-------------+-----------+---------+---------------+--------------+
 ---------ここまで---------
 </pre></section>
@@ -1609,11 +1608,13 @@ $ ssh -i default.pem root&#64;&lt;IPアドレス&gt;
             
             <section><ul class="simple">
 <li>起動した仮想マシンを削除します。</li>
+<li>ログインした仮想マシンからexitしてから削除を実行します。</li>
 <li>削除後、以下のようにリソースが削除されていることを確認します。</li>
 </ul>
 <p>コマンドの実行:</p>
 <pre class="literal-block">
 ---------ここから---------
+[root&#64;seminer01-vm-from-cli ~]# exit
 $ nova delete ${USER}-vm-from-cli
 $ nova list
 +----+------+--------+------------+-------------+----------+
