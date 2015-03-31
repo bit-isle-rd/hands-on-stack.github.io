@@ -15,7 +15,7 @@
 ================
 
 - まず、Horizonへログインし、現在の状況を確認します。
-- http://xxxxxxxxxxxxxxxxxx
+- http://10.50.13.2/
 - ログインIDの確認方法は次ページ参照
 
 .. image:: ./_assets/t1-c1/01_login.png
