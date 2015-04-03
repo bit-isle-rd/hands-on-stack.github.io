@@ -1347,7 +1347,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/16
+              1/17
             </aside>
           </footer>
         </div>
@@ -1398,7 +1398,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/16
+              2/17
             </aside>
           </footer>
         </div>
@@ -1413,11 +1413,11 @@ aside {
             
             
             <section><p>下記のコマンドで、Ansibleが導入された操作用仮想マシンを用意します。</p>
-<p>&quot;seminer11&quot; の部分には、操作端末に応じた番号が割り当てられます。</p>
+<p>&quot;${USER}&quot; の部分には、操作端末に応じた番号が割り当てられます。</p>
 <p>コマンド実行の様子(数分かかります):</p>
 <pre class="literal-block">
 ---------ここから---------
-$ cd /opt/support/t2-c2/01_init.sh
+$ /opt/support/t2-c2/01_init.sh
 Cleaning up...
 ...(中略)...
 Waiting for guest OS to be ready........
@@ -1442,7 +1442,7 @@ $ ssh -i ~/default.pem root&#64;$MY_IP
             </aside>
             
             <aside class="page_number">
-              3/16
+              3/17
             </aside>
           </footer>
         </div>
@@ -1490,7 +1490,7 @@ ansible 1.8.2
             </aside>
             
             <aside class="page_number">
-              4/16
+              4/17
             </aside>
           </footer>
         </div>
@@ -1535,7 +1535,7 @@ localhost | success &gt;&gt; {
             </aside>
             
             <aside class="page_number">
-              5/16
+              5/17
             </aside>
           </footer>
         </div>
@@ -1561,8 +1561,8 @@ novaコマンドで、仮想マシンのリストが取得できればインス�
 +--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
 | ID                                   | Name                     | Status | Task State | Power State | Networks           |
 +--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
-| 16b659aa-abe5-4d08-88ee-3803aae1b1cd | seminer11-ansible-server | ACTIVE | -          | Running     | private=10.50.16.1 |
-| cdac9e6e-7b2a-44ec-a18f-be6e7ea3b11e | seminer11-test-server    | ACTIVE | -          | Running     | private=10.50.16.3 |
+| 16b659aa-abe5-4d08-88ee-3803aae1b1cd | seminerXX-ansible-server | ACTIVE | -          | Running     | private=10.50.XX.XX |
+| cdac9e6e-7b2a-44ec-a18f-be6e7ea3b11e | seminerXX-test-server    | ACTIVE | -          | Running     | private=10.50.XX.XX |
 +--------------------------------------+--------------------------+--------+------------+-------------+--------------------+
 ---------ここまで---------
 </pre></section>
@@ -1581,7 +1581,7 @@ novaコマンドで、仮想マシンのリストが取得できればインス�
             </aside>
             
             <aside class="page_number">
-              6/16
+              6/17
             </aside>
           </footer>
         </div>
@@ -1611,8 +1611,8 @@ library = /root:/root/venv/lib/python2.6/site-packages/ansible/modules/core:/roo
 <pre class="literal-block">
 ---------ここから---------
 localhost ansible_connection=local
-[test-server]                       &lt;-ここを追記
-10.50.16.10                         &lt;-nova listの結果からここを追記
+[test-server]           &lt;-ここを追記
+10.50.XX.XX             &lt;-nova listの結果から～test-serverのIPを追記
 ---------ここまで---------
 </pre></section>
             
@@ -1630,7 +1630,7 @@ localhost ansible_connection=local
             </aside>
             
             <aside class="page_number">
-              7/16
+              7/17
             </aside>
           </footer>
         </div>
@@ -1649,7 +1649,7 @@ localhost ansible_connection=local
 <pre class="literal-block">
 ---------ここから---------
 (venv)# ansible test-server -i ansible_hosts -m ping -u root --private-key=default.pem
-10.50.16.10 | success &gt;&gt; {
+10.50.XX.XX | success &gt;&gt; {
   &quot;changed&quot;: false,
   &quot;ping&quot;: &quot;pong&quot;
 }
@@ -1672,7 +1672,7 @@ localhost ansible_connection=local
             </aside>
             
             <aside class="page_number">
-              8/16
+              8/17
             </aside>
           </footer>
         </div>
@@ -1716,7 +1716,7 @@ localhost              : ok=4    changed=2    unreachable=0    failed=0
             </aside>
             
             <aside class="page_number">
-              9/16
+              9/17
             </aside>
           </footer>
         </div>
@@ -1791,7 +1791,7 @@ tasks:
             </aside>
             
             <aside class="page_number">
-              10/16
+              10/17
             </aside>
           </footer>
         </div>
@@ -1813,10 +1813,10 @@ tasks:
 (venv)# wget -O inventory.py http://goo.gl/wxqQ1t
 (venv)# chmod +x inventory.py
 (venv)# wget -O inventory.ini http://goo.gl/Ioo1VM
-(venv)# vi inventory.ini ←hostname_prefixを自身の環境にあわせてseminerNN-testに修正):
+(venv)# vi inventory.ini
 ...(中略)...
 [test]
-hostname_prefix = seminer11-test
+hostname_prefix = seminerNN-test  ←hostname_prefixを自身の環境にあわせてseminerNN-testに修正):
 
 (venv)# python inventory.py --list  ← inventory.pyを実行し、リストが取得できることを確認
 (略)
@@ -1837,7 +1837,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              11/16
+              11/17
             </aside>
           </footer>
         </div>
@@ -1881,7 +1881,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              12/16
+              12/17
             </aside>
           </footer>
         </div>
@@ -1924,7 +1924,7 @@ hostname_prefix = seminer11-test
             </aside>
             
             <aside class="page_number">
-              13/16
+              13/17
             </aside>
           </footer>
         </div>
@@ -1947,18 +1947,18 @@ hostname_prefix = seminer11-test
 PLAY [test] *******************************************************************
 
 GATHERING FACTS ***************************************************************
-ok: [10.50.16.10]
-ok: [10.50.16.11]
+ok: [10.50.XX.XX]
+ok: [10.50.XX.XX]
 
 (中略)
 
 PLAY RECAP ********************************************************************
-10.50.16.10                : ok=3    changed=0    unreachable=0    failed=0
-10.50.16.11                : ok=3    changed=0    unreachable=0    failed=0
+10.50.XX.XX                : ok=3    changed=0    unreachable=0    failed=0
+10.50.XX.XX                : ok=3    changed=0    unreachable=0    failed=0
 
-(venv)# curl 10.50.16.10
+(venv)# curl 10.50.XX.XX
   ... (レスポンスがあることを確認)
-(venv)# curl 10.50.16.11
+(venv)# curl 10.50.XX.XX
   ... (レスポンスがあることを確認)
 ---------ここまで---------
 </pre></section>
@@ -1977,7 +1977,7 @@ PLAY RECAP ********************************************************************
             </aside>
             
             <aside class="page_number">
-              14/16
+              14/17
             </aside>
           </footer>
         </div>
@@ -1997,7 +1997,7 @@ PLAY RECAP ********************************************************************
 <p>コマンド実行の様子:</p>
 <pre class="literal-block">
 ---------ここから---------
-[root&#64;seminer11-ansible-server ~]# logout
+[root&#64;seminerXX-ansible-server ~]# logout
 Connection to 118.67.96.82 closed.
 
 $ hostname
@@ -2005,7 +2005,6 @@ piston-seminer
 $ /opt/support/common/9_cleanup.sh
 Deleting seminer11-ansible-server
 Deallocating da778dd3-db98-4477-ae25-dc6fcebaf86d...
-Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
 ---------ここまで---------
 </pre></section>
             
@@ -2023,7 +2022,7 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
             </aside>
             
             <aside class="page_number">
-              15/16
+              15/17
             </aside>
           </footer>
         </div>
@@ -2058,7 +2057,39 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
             </aside>
             
             <aside class="page_number">
-              16/16
+              16/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: t2-c2.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><blockquote>
+<ul class="simple">
+<li><a class="reference external" href="./index.html#slide5">おつかれさまでした。</a></li>
+</ul>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="t2-c2.rst">t2-c2.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/17
             </aside>
           </footer>
         </div>
@@ -2165,6 +2196,12 @@ Deleted floatingip: da778dd3-db98-4477-ae25-dc6fcebaf86d
       <tr id="toc-row-16">
         <th><a href="#slide16">&gt; まとめ</a></th>
         <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">-</a></th>
+        <td><a href="#slide17">17</a></td>
       </tr>
       
       
