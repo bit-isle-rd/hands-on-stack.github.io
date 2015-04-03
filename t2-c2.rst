@@ -58,7 +58,7 @@ OpenStackと連携して仮想マシンの管理を行う
 
 ~~~~
 
-> Lesson1: Ansibleのインストール(1)
+> Lesson1-1: Ansibleのインストール
 ===================================
 Ansibleは、OSが提供するパッケージやPythonのpipを利用するなど、いくつかの方法でインストールすることができますが、
 ここではPythonのvirtualenvを利用して、仮想実行環境にAnsibleをインストールする方法を紹介します。
@@ -83,7 +83,7 @@ pipを利用すると、Ansibleが依存しているモジュール(Jinja2など
 
 ~~~~
 
-> Lesson1: Ansibleのインストール(2)
+> Lesson1-2: Ansibleの動作確認
 ===================================
 Ansibleのpingモジュールを利用して動作確認を行います。
 ここではリモートホストではなく、ローカルホストにpingモジュールを摘要します。
@@ -102,6 +102,7 @@ Ansibleのpingモジュールを利用して動作確認を行います。
 
 実行結果が **success** となっていれば、動作確認成功です。
 
+環境構成:
 
 .. image:: ./_assets/t2-c2/01_check_1.png
    :width: 10%
@@ -134,9 +135,10 @@ novaコマンドで、仮想マシンのリストが取得できればインス�
 ===================================
 Ansibleの基本動作を設定する **$HOME/.ansible.cfg** の新規作成と、操作対象ホストを記述した **ansible_hosts** に **[test-server]** グループのメンバーとして **seminer11-test-server** のIPアドレスを追記します。IPアドレスについては、 **nova list** の出力結果取得したアドレスを指定してください。
 
-設定ファイルを作成する($HOME/.ansible.cfg)::
+設定ファイルを確認する($HOME/.ansible.cfg)::
 
   ---------ここから---------
+  (venv)# cat .ansible.cfg
   [defaults]
   forks = 10
   host_key_checking = False
@@ -148,6 +150,7 @@ Ansibleの基本動作を設定する **$HOME/.ansible.cfg** の新規作成と�
 インベントリファイルの修正($HOME/ansible_hosts)::
 
   ---------ここから---------
+  (venv)# vi ansible_hosts
   localhost ansible_connection=local
   [test-server]           <-ここを追記
   10.50.XX.XX             <-nova listの結果から～test-serverのIPを追記
@@ -172,7 +175,7 @@ test-serverグループに対して遠隔操作が可能であることを、pin
 環境構成:
 
 .. image:: ./_assets/t2-c2/01_check_2.png
-   :width: 30%
+   :width: 35%
 
 ~~~~
 
