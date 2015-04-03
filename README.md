@@ -1,4 +1,4 @@
-# hands-on-stack.github.io
+# piston-handson seminer
 
 ## 本資料について
 
