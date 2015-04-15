@@ -42,7 +42,7 @@ div.slide {
   position: absolute;
   overflow: hidden;
   width: 900px;
-  height: 700px;
+  height: 800px;
   margin-top: -350px;
   margin-left: -400px;
   left: 50%;
@@ -382,7 +382,7 @@ li pre { margin-left: 0em; }
   text-align: center;
   display: table-cell;
   vertical-align: middle;
-  height: 700px;
+  height: 800px;
   width: 900px;
   font-size: 50px;
   margin-top:100px;
