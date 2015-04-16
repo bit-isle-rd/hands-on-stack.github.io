@@ -19,7 +19,7 @@ OpenStackの使い方ハンズオン
 ログイン後の状態::
 
   ---------ここから---------
-  $ ssh seminerXX
+  $ ssh seminerXX@10.50.XX.XX
 
   [seminerXX@piston-seminer ~]$
   ---------ここまで---------
